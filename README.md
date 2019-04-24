@@ -1,6 +1,22 @@
 <p align="center">:rocket: <strong>CRUDBOOSTER<sup>v6</sup></strong>:new: will be available soon, stay tuned :revolving_hearts: :rocket:</p>
 <hr>
 
+"repositories": [{
+	"url": "https://github.com/5lineofcode/crudbooster-fixed.git",
+	"type": "vcs"
+}],
+"require": {
+	"php": "^7.1.3",
+	"crocodicstudio/crudbooster" : "dev-master",
+	"fideloper/proxy": "^4.0",
+	"kreait/firebase-php": "4.20",
+	"laravel/framework": "^5.6.0",
+	"laravel/tinker": "^1.0",
+	"mpociot/laravel-apidoc-generator": "^3.4",
+	"yajra/laravel-datatables-oracle": "9.0.1"
+},
+
+
 # :rocket: CRUDBOOSTER - Laravel CRUD Generator
 [![Code Climate](https://codeclimate.com/github/crocodic-studio/crudbooster/badges/gpa.svg)](https://codeclimate.com/github/crocodic-studio/crudbooster)
 <a href="https://scrutinizer-ci.com/g/crocodic-studio/crudbooster"><img src="https://img.shields.io/scrutinizer/g/crocodic-studio/crudbooster.svg?style=flat-square" alt="Quality Score"></img></a>
