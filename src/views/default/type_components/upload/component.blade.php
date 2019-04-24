@@ -41,8 +41,35 @@
             @endif
         @endif
         @if(!$value)
+
+
+                <p><a data-lightbox='roadtrip' href='#'><img id='image-preview-{{$name}}' style='max-width:160px;display: none;' title="Image" src='#'/></a></p>
+
             <input type='file' id="{{$name}}" title="{{$form['label']}}" {{$required}} {{$readonly}} {{$disabled}} class='form-control' name="{{$name}}"/>
             <p class='help-block'>{{ @$form['help'] }}</p>
+
+            <script>
+            window.onload = function(){
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            if(e.target.result.indexOf("data:image")==-1)
+                            {   
+                                $('#image-preview-{{$name}}').hide();
+                            }   
+                            else {
+                                $('#image-preview-{{$name}}').attr('src', e.target.result).show();
+                            }
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                $("#{{$name}}").change(function(){
+                    readURL(this);
+                });
+            }
+            </script>
         @else
             <p class='text-muted'><em>{{trans("crudbooster.notice_delete_file_upload")}}</em></p>
         @endif
