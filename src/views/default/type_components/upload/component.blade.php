@@ -29,7 +29,7 @@
             ? change $row->id to $row->pk;
             */
             $module = CRUDBooster::getCurrentModule();
-            $table_name = $module->name;
+            $table_name = $module->table_name;
             $primaryKey = CRUDBooster::pk($table_name);
             $row->pk = $row->$primaryKey;
             ?>
