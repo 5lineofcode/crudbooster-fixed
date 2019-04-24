@@ -1302,6 +1302,10 @@ class CBController extends Controller
         $command = 'edit';
         Session::put('current_row_id', $id);
 
+		if(method_exists($this,'before_load_edit')){
+			$this->before_load_edit();
+		}
+
         return view('crudbooster::default.form', compact('id', 'row', 'page_menu', 'page_title', 'command'));
     }
 
