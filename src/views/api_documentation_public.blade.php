@@ -133,7 +133,7 @@
                                                 @endforeach
                                                 @if($i == 0)
                                                     <tr>
-                                                        <td colspan='4' align="center"><i class='fa fa-search'></i> There is no parameter</td>
+                                                        <td colspan='4' align="center"><i class='fas fa-search'></i> There is no parameter</td>
                                                     </tr>
                                                 @endif
                                                 </tbody>

@@ -9,15 +9,17 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('.wysiwyg').summernote();
+                $('.wysiwyg').summernote({
+                    height: 100
+                });
             })
         </script>
     @endpush
 
     <ul class="nav nav-tabs">
-        <li><a href="{{ CRUDBooster::mainpath() }}"><i class='fa fa-file'></i> API Documentation</a></li>
-        <li><a href="{{ CRUDBooster::mainpath('screet-key') }}"><i class='fa fa-key'></i> API Secret Key</a></li>
-        <li class='active'><a href="{{ CRUDBooster::mainpath('generator') }}"><i class='fa fa-cog'></i> API Generator</a></li>
+        <li><a href="{{ CRUDBooster::mainpath() }}"><i class='fas fa-file'></i> API Documentation</a></li>
+        <li><a href="{{ CRUDBooster::mainpath('screet-key') }}"><i class='fas fa-key'></i> API Secret Key</a></li>
+        <li class='active'><a href="{{ CRUDBooster::mainpath('generator') }}"><i class='fas fa-cog'></i> API Generator</a></li>
     </ul>
 
     <div class='box'>
@@ -158,7 +160,7 @@
                                 }
 
                                 no_params += 1;
-                                $('#table-response tbody').append("<tr class='success tr-response'><td>" + no_params + "</td><td>&nbsp;&nbsp;- " + obj.name + "<input type='hidden' name='responses_name[]' value='" + obj.name + "'/></td><td>" + obj_type + "<input type='hidden' name='responses_type[]' value='" + obj_type + "'/></td><td>-<input type='hidden' name='responses_subquery[]' value=''/></td><td><select class='form-control responses_used' name='responses_used[]'><option value='1'>YES</option><option value='0'>NO</option></select></td><td><a class='btn btn-danger' href='javascript:void(0)' onclick='deleteResponse(this)'><i class='fa fa-ban'></i></a></td></tr>");
+                                $('#table-response tbody').append("<tr class='success tr-response'><td>" + no_params + "</td><td>&nbsp;&nbsp;- " + obj.name + "<input type='hidden' name='responses_name[]' value='" + obj.name + "'/></td><td>" + obj_type + "<input type='hidden' name='responses_type[]' value='" + obj_type + "'/></td><td>-<input type='hidden' name='responses_subquery[]' value=''/></td><td><select class='form-control responses_used' name='responses_used[]'><option value='1'>YES</option><option value='0'>NO</option></select></td><td><a class='btn btn-danger' href='javascript:void(0)' onclick='deleteResponse(this)'><i class='fas fa-ban'></i></a></td></tr>");
                             })
                         })
 
@@ -255,7 +257,7 @@
                                 }
 
 
-                                $(this).find('.col-delete').html("<a class='btn btn-danger' href='javascript:void(0)' onclick='deleteParam(this)'><i class='fa fa-ban'></i></a>");
+                                $(this).find('.col-delete').html("<a class='btn btn-danger' href='javascript:void(0)' onclick='deleteParam(this)'><i class='fas fa-ban'></i></a>");
                                 i += 1;
                             })
                         })
@@ -337,7 +339,7 @@
                             $(this).find('td:nth-child(5) select').val(required);
                             $(this).find('td:nth-child(6) select').val(used);
 
-                            $(this).find('.col-delete').html("<a class='btn btn-danger' href='javascript:void(0)' onclick='deleteParam(this)'><i class='fa fa-ban'></i></a>");
+                            $(this).find('.col-delete').html("<a class='btn btn-danger' href='javascript:void(0)' onclick='deleteParam(this)'><i class='fas fa-ban'></i></a>");
                             i += 1;
                         })
 
@@ -419,7 +421,7 @@
 
                             if (obj.subquery == '') {
                                 input_subquery = "-<input type='hidden' name='responses_subquery[]' value='" + obj.subquery + "'/>";
-                                delete_btn = "<a class='btn btn-danger' href='javascript:void(0)' onclick='deleteResponse(this)'><i class='fa fa-ban'></i></a>";
+                                delete_btn = "<a class='btn btn-danger' href='javascript:void(0)' onclick='deleteResponse(this)'><i class='fas fa-ban'></i></a>";
                             } else {
                                 if (obj.subquery) {
                                     var subquery = obj.subquery;
@@ -427,7 +429,7 @@
                                     var subquery = '';
                                 }
                                 input_subquery = subquery + "<input type='hidden' name='responses_subquery[]' value='" + subquery + "'/>";
-                                delete_btn = "<a class='btn btn-danger' href='javascript:void(0)' onclick='deleteResponse(this)'><i class='fa fa-ban'></i></a>";
+                                delete_btn = "<a class='btn btn-danger' href='javascript:void(0)' onclick='deleteResponse(this)'><i class='fas fa-ban'></i></a>";
                             }
 
                             $('#table-response tbody').append("<tr class='" + tr_success + " tr-response'><td>" + no_params + "</td><td>&nbsp;&nbsp;- " + obj.name + "<input type='hidden' name='responses_name[]' value='" + obj.name + "'/></td><td>" + obj_type + "<input type='hidden' name='responses_type[]' value='" + obj_type + "'/></td><td>" + input_subquery + "</td><td><select class='form-control responses_used' name='responses_used[]'><option " + used_yes + " value='1'>YES</option><option " + used_no + " value='0'>NO</option></select></td><td>" + delete_btn + "</td></tr>");
@@ -497,7 +499,7 @@
                         $('#table-parameters tbody tr').each(function () {
                             no_params += 1;
                             $(this).find('td:nth-child(1)').text(no_params);
-                            $(this).find('.col-delete').html("<a class='btn btn-danger' href='javascript:void(0)' onclick='deleteParam(this)'><i class='fa fa-ban'></i></a>");
+                            $(this).find('.col-delete').html("<a class='btn btn-danger' href='javascript:void(0)' onclick='deleteParam(this)'><i class='fas fa-ban'></i></a>");
                         });
                     }
 
@@ -521,7 +523,7 @@
                         htm += "<td>#</td>";
                         htm += "<td>&nbsp;&nbsp;- " + val + "<input type='hidden' name='responses_name[]' value='" + val + "'/></td><td>" + validation + "<input type='hidden' name='responses_type[]' value='" + validation + "'/></td><td>" + subquery + "<input type='hidden' name='responses_subquery[]' value='" + subquery + "'/></td>";
                         htm += "<td><select class='form-control responses_used' name='responses_used[]'><option " + check_yes + " value='1'>YES</option><option " + check_no + " value='0'>NO</option></select></td>";
-                        htm += "<td><a class='btn btn-danger' href='javascript:void(0)' onclick='deleteResponse(this)'><i class='fa fa-ban'></i></a></td></tr>";
+                        htm += "<td><a class='btn btn-danger' href='javascript:void(0)' onclick='deleteResponse(this)'><i class='fas fa-ban'></i></a></td></tr>";
 
                         if (val == '') return false;
                         // if(subquery == '') return false;
@@ -545,7 +547,7 @@
                             }
 
                             $(this).find('td:nth-child(1)').text(no_params);
-                            $(this).find('.col-delete').html("<a class='btn btn-danger' href='javascript:void(0)' onclick='deleteResponse(this)'><i class='fa fa-ban'></i></a>");
+                            $(this).find('.col-delete').html("<a class='btn btn-danger' href='javascript:void(0)' onclick='deleteResponse(this)'><i class='fas fa-ban'></i></a>");
                         });
                     }
 
@@ -648,8 +650,8 @@
 
                 <div class='form-group'>
                     <div class="clearfix">
-                        <label><i class='fa fa-cog'></i> Parameters</label>
-                        <a class='pull-right btn btn-xs btn-primary' href='javascript:void(0)' onclick="load_parameters()"><i class='fa fa-refresh'></i>
+                        <label><i class='fas fa-cog'></i> Parameters</label>
+                        <a class='pull-right btn btn-xs btn-primary' href='javascript:void(0)' onclick="load_parameters()"><i class='fas fa-refresh'></i>
                             Reset</a>
                     </div>
 
@@ -721,7 +723,7 @@
                                     <option value='1'>YES</option>
                                     <option value='0'>NO</option>
                                 </select></td>
-                            <td class='col-delete'><a class='btn btn-primary' href='javascript:void(0)' onclick='addParam()'><i class='fa fa-plus'></i></a></td>
+                            <td class='col-delete'><a class='btn btn-primary' href='javascript:void(0)' onclick='addParam()'><i class='fas fa-plus'></i></a></td>
                         </tr>
                         </tfoot>
                     </table>
@@ -741,8 +743,8 @@
 
                 <div class='form-group'>
                     <div class='clearfix'>
-                        <label><i class='fa fa-cog'></i> Response</label>
-                        <a class='pull-right btn btn-xs btn-primary' href='javascript:void(0)' onclick='load_response()'><i class='fa fa-refresh'></i> Reset</a>
+                        <label><i class='fas fa-cog'></i> Response</label>
+                        <a class='pull-right btn btn-xs btn-primary' href='javascript:void(0)' onclick='load_response()'><i class='fas fa-refresh'></i> Reset</a>
                     </div>
                     <div id='response'>
                         <table id='table-response' class='table table-striped table-bordered'>
@@ -788,7 +790,7 @@
                                         <option value='0'>NO</option>
                                     </select></td>
                                 <td class='col-delete'><a class='btn btn-primary' href='javascript:void(0)' onclick='addResponse()'><i
-                                                class='fa fa-plus'></i></a></td>
+                                                class='fas fa-plus'></i></a></td>
                             </tr>
                             </tfoot>
                         </table>

@@ -164,18 +164,13 @@
                     }
                     $result = $result->orderby($select_title, 'asc')->get();
 
-                    if($form['datatable_orig'] != ''){
-                        $params = explode("|", $form['datatable_orig']);
-                        if(!isset($params[2])) $params[2] = "id";
-                        $value = DB::table($params[0])->where($params[2], $id)->first()->{$params[1]};
-                        $value = explode(",", $value);
-                    } else {
-                        $foreignKey = CRUDBooster::getForeignKey($table, $form['relationship_table']);
-                        $foreignKey2 = CRUDBooster::getForeignKey($select_table, $form['relationship_table']);
-                        $value = DB::table($form['relationship_table'])->where($foreignKey, $id);
-                        $value = $value->pluck($foreignKey2)->toArray();
-                    }
-                    
+
+                    $foreignKey = CRUDBooster::getForeignKey($table, $form['relationship_table']);
+                    $foreignKey2 = CRUDBooster::getForeignKey($select_table, $form['relationship_table']);
+
+                    $value = DB::table($form['relationship_table'])->where($foreignKey, $id);
+                    $value = $value->pluck($foreignKey2)->toArray();
+
                     foreach ($result as $r) {
                         $option_label = $r->{$select_title};
                         $option_value = $r->id;
@@ -221,7 +216,7 @@
             @endif
         </select>
         <div class="text-danger">
-            {!! $errors->first($name)?"<i class='fa fa-info-circle'></i> ".$errors->first($name):"" !!}
+            {!! $errors->first($name)?"<i class='fas fa-info-circle'></i> ".$errors->first($name):"" !!}
         </div><!--end-text-danger-->
         <p class='help-block'>{{ @$form['help'] }}</p>
 

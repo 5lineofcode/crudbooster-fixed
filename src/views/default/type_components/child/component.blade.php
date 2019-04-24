@@ -15,14 +15,14 @@ $name = str_slug($form['label'], '');
 
             <div id='panel-form-{{$name}}' class="panel panel-default">
                 <div class="panel-heading">
-                    <i class='fa fa-bars'></i> {{$form['label']}}
+                    <i class='fas fa-bars'></i> {{$form['label']}}
                 </div>
                 <div class="panel-body">
 
                     <div class='row'>
                         <div class='col-sm-10'>
                             <div class="panel panel-default">
-                                <div class="panel-heading"><i class="fa fa-pencil-square-o"></i> {{trans("crudbooster.text_form")}}</div>
+                                <div class="panel-heading"><i class="fas fa-pencil-square-o"></i> {{trans("crudbooster.text_form")}}</div>
                                 <div class="panel-body child-form-area">
                                     @foreach($form['columns'] as $col)
                                         <?php $name_column = $name.$col['name'];?>
@@ -62,7 +62,7 @@ $name = str_slug($form['label'], '');
                                                     <label class="radio-inline">
                                                         <input type="radio" name="child-{{$col['name']}}"
                                                                class='{{ ($e==0 && $col['required'])?"required":""}} {{$name_column}}'
-                                                               value="{{$radio_value}}"{{ ($e==0 && $col['required'])?" checked":""}}> {{$radio_label}}
+                                                               value="{{$radio_value}}"> {{$radio_label}}
                                                     </label>
                                                     <?php endforeach;?>
                                                     <?php endif;?>
@@ -73,7 +73,7 @@ $name = str_slug($form['label'], '');
                                                         <input type="text" class="form-control input-label {{$col['required']?"required":""}}" readonly>
                                                         <span class="input-group-btn">
 								        <button class="btn btn-primary" onclick="showModal{{$name_column}}()" type="button"><i
-                                                    class='fa fa-search'></i> {{trans('crudbooster.datamodal_browse_data')}}</button>
+                                                    class='fas fa-search'></i> {{trans('crudbooster.datamodal_browse_data')}}</button>
 								      </span>
                                                     </div><!-- /input-group -->
 
@@ -117,7 +117,7 @@ $name = str_slug($form['label'], '');
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                                                                 aria-hidden="true">&times;</span></button>
                                                                     <h4 class="modal-title"><i
-                                                                                class='fa fa-search'></i> {{trans('crudbooster.datamodal_browse_data')}} {{$col['label']}}
+                                                                                class='fas fa-search'></i> {{trans('crudbooster.datamodal_browse_data')}} {{$col['label']}}
                                                                     </h4>
                                                                 </div>
                                                                 <div class="modal-body">
@@ -144,12 +144,12 @@ $name = str_slug($form['label'], '');
                                                         <input type="text" class="form-control input-label {{$col['required']?"required":""}}" readonly>
                                                         <span class="input-group-btn">
 								        <button class="btn btn-primary" id="btn-upload-{{$name_column}}" onclick="showFakeUpload{{$name_column}}()"
-                                                type="button"><i class='fa fa-search'></i> {{trans('crudbooster.datamodal_browse_file')}}</button>
+                                                type="button"><i class='fas fa-search'></i> {{trans('crudbooster.datamodal_browse_file')}}</button>
 								      </span>
                                                     </div><!-- /input-group -->
 
                                                     <div id="loading-{{$name_column}}" class='text-info' style="display: none">
-                                                        <i class='fa fa-spin fa-spinner'></i> {{trans('crudbooster.text_loading')}}
+                                                        <i class='fas fa-spin fa-spinner'></i> {{trans('crudbooster.text_loading')}}
                                                     </div>
 
                                                     <input type="file" id='fake-upload-{{$name_column}}' style="display: none">
@@ -481,8 +481,8 @@ $name = str_slug($form['label'], '');
                                                 @endif
                                                         @endforeach
                                                     trRow += "<td>" +
-                                                    "<a href='#panel-form-{{$name}}' onclick='editRow{{$name}}(this)' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a> " +
-                                                    "<a href='javascript:void(0)' onclick='deleteRow{{$name}}(this)' class='btn btn-danger btn-xs'><i class='fa fa-trash'></i></a></td>";
+                                                    "<a href='#panel-form-{{$name}}' onclick='editRow{{$name}}(this)' class='btn btn-warning btn-xs'><i class='fas fa-pencil'></i></a> " +
+                                                    "<a href='javascript:void(0)' onclick='deleteRow{{$name}}(this)' class='btn btn-danger btn-xs'><i class='fas fa-trash'></i></a></td>";
                                                 trRow += '</tr>';
                                                 $('#table-{{$name}} tbody .trNull').remove();
                                                 if (currentRow == null) {
@@ -510,7 +510,7 @@ $name = str_slug($form['label'], '');
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class='fa fa-table'></i> {{trans('crudbooster.table_detail')}}
+                            <i class='fas fa-table'></i> {{trans('crudbooster.table_detail')}}
                         </div>
                         <div class="panel-body no-padding table-responsive" style="max-height: 400px;overflow: auto;">
                             <table id='table-{{$name}}' class='table table-striped table-bordered'>
@@ -594,9 +594,9 @@ $name = str_slug($form['label'], '');
                                     @endforeach
                                     <td>
                                         <a href='#panel-form-{{$name}}' onclick='editRow{{$name}}(this)' class='btn btn-warning btn-xs'><i
-                                                    class='fa fa-pencil'></i></a>
+                                                    class='fas fa-pencil'></i></a>
                                         <a href='javascript:void(0)' onclick='deleteRow{{$name}}(this)' class='btn btn-danger btn-xs'><i
-                                                    class='fa fa-trash'></i></a>
+                                                    class='fas fa-trash'></i></a>
                                     </td>
                                 </tr>
 

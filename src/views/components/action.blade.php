@@ -83,19 +83,19 @@
     @if(CRUDBooster::isRead() && $button_detail)
         <a class='btn btn-xs btn-primary btn-detail' title='{{trans("crudbooster.action_detail_data")}}'
            href='{{CRUDBooster::mainpath("detail/".$row->$pk)."?return_url=".urlencode(Request::fullUrl())}}'><i
-                    class='fa fa-eye'></i> {{trans("crudbooster.action_detail_data")}}</a>
+                    class='fas fa-eye'></i> {{trans("crudbooster.action_detail_data")}}</a>
     @endif
 
     @if(CRUDBooster::isUpdate() && $button_edit)
         <a class='btn btn-xs btn-success btn-edit' title='{{trans("crudbooster.action_edit_data")}}'
            href='{{CRUDBooster::mainpath("edit/".$row->$pk)."?return_url=".urlencode(Request::fullUrl())."&parent_id=".g("parent_id")."&parent_field=".$parent_field }}'><i
-                    class='fa fa-pencil'></i> {{trans("crudbooster.action_edit_data")}}</a>
+                    class='fas fa-pencil'></i> {{trans("crudbooster.action_edit_data")}}</a>
     @endif
 
     @if(CRUDBooster::isDelete() && $button_delete)
         <?php $url = CRUDBooster::mainpath("delete/".$row->$pk);?>
         <a class='btn btn-xs btn-warning btn-delete' title='{{trans("crudbooster.action_delete_data")}}' href='javascript:;'
-           onclick='{{CRUDBooster::deleteConfirm($url)}}'><i class='fa fa-trash'></i> {{trans("crudbooster.action_delete_data")}}</a>
+           onclick='{{CRUDBooster::deleteConfirm($url)}}'><i class='fas fa-trash'></i> {{trans("crudbooster.action_delete_data")}}</a>
     @endif
 
 @elseif($button_action_style == 'dropdown')
@@ -138,40 +138,47 @@
             @if(CRUDBooster::isRead() && $button_detail)
                 <li><a class='btn-detail' title='{{trans("crudbooster.action_detail_data")}}'
                        href='{{CRUDBooster::mainpath("detail/".$row->$pk)."?return_url=".urlencode(Request::fullUrl())}}'><i
-                                class='fa fa-eye'></i> {{trans("crudbooster.action_detail_data")}}</a></li>
+                                class='fas fa-eye'></i> {{trans("crudbooster.action_detail_data")}}</a></li>
             @endif
 
             @if(CRUDBooster::isUpdate() && $button_edit)
                 <li><a class='btn-edit' title='{{trans("crudbooster.action_edit_data")}}'
                        href='{{CRUDBooster::mainpath("edit/".$row->$pk)."?return_url=".urlencode(Request::fullUrl())."&parent_id=".g("parent_id")."&parent_field=".$parent_field}}'><i
-                                class='fa fa-pencil'></i> {{trans("crudbooster.action_edit_data")}}</a></li>
+                                class='fas fa-pencil'></i> {{trans("crudbooster.action_edit_data")}}</a></li>
             @endif
 
             @if(CRUDBooster::isDelete() && $button_delete)
                 <?php $url = CRUDBooster::mainpath("delete/".$row->$pk);?>
                 <li><a class='btn-delete' title='{{trans("crudbooster.action_delete_data")}}' href='javascript:;'
-                       onclick='{{CRUDBooster::deleteConfirm($url)}}'><i class='fa fa-trash'></i> {{trans("crudbooster.action_delete_data")}}</a></li>
+                       onclick='{{CRUDBooster::deleteConfirm($url)}}'><i class='fas fa-trash'></i> {{trans("crudbooster.action_delete_data")}}</a></li>
             @endif
         </ul>
     </div>
 
 @else
 
+    <?php
+    $module = CRUDBooster::getCurrentModule();
+    $singleviewmode1 = isset($_GET["singleviewmode"]) ? "&singleviewmode=true" : ""; 
+    $singleviewmode2 = isset($_GET["singleviewmode"]) ? "?singleviewmode=true" : ""; 
+    ?>
+
+
     @if(CRUDBooster::isRead() && $button_detail)
         <a class='btn btn-xs btn-primary btn-detail' title='{{trans("crudbooster.action_detail_data")}}'
-           href='{{CRUDBooster::mainpath("detail/".$row->$pk)."?return_url=".urlencode(Request::fullUrl())}}'><i class='fa fa-eye'></i></a>
+           href='{{CRUDBooster::mainpath("detail/".$row->$pk)."?return_url=".urlencode(Request::fullUrl()) . $singleviewmode1 }}'><i class='fas fa-eye'></i></a>
     @endif
 
     @if(CRUDBooster::isUpdate() && $button_edit)
         <a class='btn btn-xs btn-success btn-edit' title='{{trans("crudbooster.action_edit_data")}}'
-           href='{{CRUDBooster::mainpath("edit/".$row->$pk)."?return_url=".urlencode(Request::fullUrl())."&parent_id=".g("parent_id")."&parent_field=".$parent_field}}'><i
-                    class='fa fa-pencil'></i></a>
+           href='{{CRUDBooster::mainpath("edit/".$row->$pk)."?return_url=".urlencode(Request::fullUrl())."&parent_id=".g("parent_id")."&parent_field=".$parent_field . $singleviewmode1 }}'><i
+                    class='fas fa-pencil'></i></a>
     @endif
 
     @if(CRUDBooster::isDelete() && $button_delete)
         <?php $url = CRUDBooster::mainpath("delete/".$row->$pk);?>
         <a class='btn btn-xs btn-warning btn-delete' title='{{trans("crudbooster.action_delete_data")}}' href='javascript:;'
-           onclick='{{CRUDBooster::deleteConfirm($url)}}'><i class='fa fa-trash'></i></a>
+           onclick='{{CRUDBooster::deleteConfirm($url)}}'><i class='fas fa-trash'></i></a>
     @endif
 
 @endif

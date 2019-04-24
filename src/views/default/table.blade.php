@@ -66,27 +66,26 @@
                 $name = $col['name'];
                 $field = $col['field_with'];
                 $width = ($col['width']) ?: "auto";
-				$style = ($col['style']) ?: "";
                 $mainpath = trim(CRUDBooster::mainpath(), '/').$build_query;
-                echo "<th width='$width' $style>";
+                echo "<th width='$width'>";
                 if (isset($sort_column[$field])) {
                     switch ($sort_column[$field]['sorting']) {
                         case 'asc':
                             $url = CRUDBooster::urlFilterColumn($field, 'sorting', 'desc');
-                            echo "<a href='$url' title='Click to sort descending'>$colname &nbsp; <i class='fa fa-sort-desc'></i></a>";
+                            echo "<a href='$url' title='Click to sort descending'>$colname &nbsp; <i class='fas fa-sort-desc'></i></a>";
                             break;
                         case 'desc':
                             $url = CRUDBooster::urlFilterColumn($field, 'sorting', 'asc');
-                            echo "<a href='$url' title='Click to sort ascending'>$colname &nbsp; <i class='fa fa-sort-asc'></i></a>";
+                            echo "<a href='$url' title='Click to sort ascending'>$colname &nbsp; <i class='fas fa-sort-asc'></i></a>";
                             break;
                         default:
                             $url = CRUDBooster::urlFilterColumn($field, 'sorting', 'asc');
-                            echo "<a href='$url' title='Click to sort ascending'>$colname &nbsp; <i class='fa fa-sort'></i></a>";
+                            echo "<a href='$url' title='Click to sort ascending'>$colname &nbsp; <i class='fas fa-sort'></i></a>";
                             break;
                     }
                 } else {
                     $url = CRUDBooster::urlFilterColumn($field, 'sorting', 'asc');
-                    echo "<a href='$url' title='Click to sort ascending'>$colname &nbsp; <i class='fa fa-sort'></i></a>";
+                    echo "<a href='$url' title='Click to sort ascending'>$colname &nbsp; <i class='fas fa-sort'></i></a>";
                 }
 
                 echo "</th>";
@@ -111,7 +110,7 @@
                 <td colspan='{{count($columns)+1}}' align="center">
                     <?php endif;?>
 
-                    <i class='fa fa-search'></i> {{trans("crudbooster.table_data_not_found")}}
+                    <i class='fas fa-search'></i> {{trans("crudbooster.table_data_not_found")}}
                 </td>
             </tr>
         @endif
@@ -139,8 +138,8 @@
                 <tr>
                     @endif
 
-                    @foreach($hc as $j=>$h)
-                        <td {{ $columns[$j]['style'] or ''}}>{!! $h !!}</td>
+                    @foreach($hc as $h)
+                        <td>{!! $h !!}</td>
                     @endforeach
                 </tr>
                 @endforeach
@@ -162,8 +161,7 @@
                 if ($col['visible'] === FALSE) continue;
                 $colname = $col['label'];
                 $width = ($col['width']) ?: "auto";
-				$style = ($col['style']) ?: "";
-                echo "<th width='$width' $style>$colname</th>";
+                echo "<th width='$width'>$colname</th>";
             }
             ?>
 
@@ -204,11 +202,11 @@ $total = $result->total();
 
                     if (toggle_advanced_report_boolean == 1) {
                         $("#advanced_export").slideDown();
-                        $(this).html("<i class='fa fa-minus-square-o'></i> {{trans('crudbooster.export_dialog_show_advanced')}}");
+                        $(this).html("<i class='fas fa-minus-square-o'></i> {{trans('crudbooster.export_dialog_show_advanced')}}");
                         toggle_advanced_report_boolean = 0;
                     } else {
                         $("#advanced_export").slideUp();
-                        $(this).html("<i class='fa fa-plus-square-o'></i> {{trans('crudbooster.export_dialog_show_advanced')}}");
+                        $(this).html("<i class='fas fa-plus-square-o'></i> {{trans('crudbooster.export_dialog_show_advanced')}}");
                         toggle_advanced_report_boolean = 1;
                     }
 
@@ -306,7 +304,7 @@ $total = $result->total();
                     <div class="modal-header">
                         <button class="close" aria-label="Close" type="button" data-dismiss="modal">
                             <span aria-hidden="true">×</span></button>
-                        <h4 class="modal-title"><i class='fa fa-filter'></i> {{trans("crudbooster.filter_dialog_title")}}</h4>
+                        <h4 class="modal-title"><i class='fas fa-filter'></i> {{trans("crudbooster.filter_dialog_title")}}</h4>
                     </div>
                     <form method='get' action=''>
                         <div class="modal-body">
@@ -332,13 +330,13 @@ $total = $result->total();
 
                                             <option typeallow='all'
                                                     {{ (CRUDBooster::getTypeFilter($col["field_with"]) == '=')?"selected":"" }} value='='>{{trans("crudbooster.filter_equal_to")}}</option>
-                                            @if(in_array($col['type_data'],['int','integer','smallint','tinyint','mediumint','bigint','double','float','decimal','time']))
+                                            @if(in_array($col['type_data'],['int','integer','double','float','decimal','time']))
                                                 <option {{ (CRUDBooster::getTypeFilter($col["field_with"]) == '>=')?"selected":"" }} value='>='>{{trans("crudbooster.filter_greater_than_or_equal")}}</option>@endif
-                                            @if(in_array($col['type_data'],['int','integer','smallint','tinyint','mediumint','bigint','double','float','decimal','time']))
+                                            @if(in_array($col['type_data'],['int','integer','double','float','decimal','time']))
                                                 <option {{ (CRUDBooster::getTypeFilter($col["field_with"]) == '<=')?"selected":"" }} value='<='>{{trans("crudbooster.filter_less_than_or_equal")}}</option>@endif
-                                            @if(in_array($col['type_data'],['int','integer','smallint','tinyint','mediumint','bigint','double','float','decimal','time']))
+                                            @if(in_array($col['type_data'],['int','integer','double','float','decimal','time']))
                                                 <option {{ (CRUDBooster::getTypeFilter($col["field_with"]) == '<')?"selected":"" }} value='<'>{{trans("crudbooster.filter_less_than")}}</option>@endif
-                                            @if(in_array($col['type_data'],['int','integer','smallint','tinyint','mediumint','bigint','double','float','decimal','time']))
+                                            @if(in_array($col['type_data'],['int','integer','double','float','decimal','time']))
                                                 <option {{ (CRUDBooster::getTypeFilter($col["field_with"]) == '>')?"selected":"" }} value='>'>{{trans("crudbooster.filter_greater_than")}}</option>@endif
                                             <option typeallow='all'
                                                     {{ (CRUDBooster::getTypeFilter($col["field_with"]) == '!=')?"selected":"" }} value='!='>{{trans("crudbooster.filter_not_equal_to")}}</option>
@@ -346,7 +344,7 @@ $total = $result->total();
                                                     {{ (CRUDBooster::getTypeFilter($col["field_with"]) == 'in')?"selected":"" }} value='in'>{{trans("crudbooster.filter_in")}}</option>
                                             <option typeallow='all'
                                                     {{ (CRUDBooster::getTypeFilter($col["field_with"]) == 'not in')?"selected":"" }} value='not in'>{{trans("crudbooster.filter_not_in")}}</option>
-                                            @if(in_array($col['type_data'],['date','time','datetime','int','integer','smallint','tinyint','mediumint','bigint','double','float','decimal','timestamp']))
+                                            @if(in_array($col['type_data'],['date','time','datetime','int','integer','double','float','decimal','timestamp']))
                                                 <option {{ (CRUDBooster::getTypeFilter($col["field_with"]) == 'between')?"selected":"" }} value='between'>{{trans("crudbooster.filter_between")}}</option>@endif
                                             <option {{ (CRUDBooster::getTypeFilter($col["field_with"]) == 'empty')?"selected":"" }} value='empty'>Empty ( or
                                                 Null)
@@ -369,8 +367,8 @@ $total = $result->total();
                                                     <input
                                                             {{ (CRUDBooster::getTypeFilter($col["field_with"]) != 'between')?"disabled":"" }}
                                                             type='text'
-                                                            class='filter-value-between form-control {{ (in_array($col["type_data"],["date","datetime","timestamp"]))?"datepicker":(in_array($col["type_data"],["time"]))?"timepicker":"" }}'
-                                                            {{ (in_array($col["type_data"],["date","datetime","timestamp","time"]))?"readonly":"" }} placeholder='{{$col["label"]}} {{trans("crudbooster.filter_from")}}'
+                                                            class='filter-value-between form-control {{ (in_array($col["type_data"],["date","datetime","timestamp"]))?"datepicker":"timepicker" }}'
+                                                            readonly placeholder='{{$col["label"]}} {{trans("crudbooster.filter_from")}}'
                                                             name='filter_column[{{$col["field_with"]}}][value][]' value='<?php
                                                     $value = CRUDBooster::getValueFilter($col["field_with"]);
                                                     echo (CRUDBooster::getTypeFilter($col["field_with"]) == 'between') ? $value[0] : "";
@@ -383,8 +381,8 @@ $total = $result->total();
                                                     <input
                                                             {{ (CRUDBooster::getTypeFilter($col["field_with"]) != 'between')?"disabled":"" }}
                                                             type='text'
-                                                            class='filter-value-between form-control {{ (in_array($col["type_data"],["date","datetime","timestamp"]))?"datepicker":(in_array($col["type_data"],["time"]))?"timepicker":"" }}'
-                                                            {{ (in_array($col["type_data"],["date","datetime","timestamp","time"]))?"readonly":"" }} placeholder='{{$col["label"]}} {{trans("crudbooster.filter_to")}}'
+                                                            class='filter-value-between form-control {{ (in_array($col["type_data"],["date","datetime","timestamp"]))?"datepicker":"timepicker" }}'
+                                                            readonly placeholder='{{$col["label"]}} {{trans("crudbooster.filter_to")}}'
                                                             name='filter_column[{{$col["field_with"]}}][value][]' value='<?php
                                                     $value = CRUDBooster::getValueFilter($col["field_with"]);
                                                     echo (CRUDBooster::getTypeFilter($col["field_with"]) == 'between') ? $value[1] : "";
@@ -439,11 +437,11 @@ $total = $result->total();
 
                     if (toggle_advanced_report_boolean == 1) {
                         $("#advanced_export").slideDown();
-                        $(this).html("<i class='fa fa-minus-square-o'></i> {{trans('crudbooster.export_dialog_show_advanced')}}");
+                        $(this).html("<i class='fas fa-minus-square-o'></i> {{trans('crudbooster.export_dialog_show_advanced')}}");
                         toggle_advanced_report_boolean = 0;
                     } else {
                         $("#advanced_export").slideUp();
-                        $(this).html("<i class='fa fa-plus-square-o'></i> {{trans('crudbooster.export_dialog_show_advanced')}}");
+                        $(this).html("<i class='fas fa-plus-square-o'></i> {{trans('crudbooster.export_dialog_show_advanced')}}");
                         toggle_advanced_report_boolean = 1;
                     }
 
@@ -458,7 +456,7 @@ $total = $result->total();
                     <div class="modal-header">
                         <button class="close" aria-label="Close" type="button" data-dismiss="modal">
                             <span aria-hidden="true">×</span></button>
-                        <h4 class="modal-title"><i class='fa fa-download'></i> {{trans("crudbooster.export_dialog_title")}}</h4>
+                        <h4 class="modal-title"><i class='fas fa-download'></i> {{trans("crudbooster.export_dialog_title")}}</h4>
                     </div>
 
                     <form method='post' target="_blank" action='{{ CRUDBooster::mainpath("export-data?t=".time()) }}'>
@@ -497,7 +495,7 @@ $total = $result->total();
                             </div>
 
                             <p><a href='javascript:void(0)' class='toggle_advanced_report'><i
-                                            class='fa fa-plus-square-o'></i> {{trans("crudbooster.export_dialog_show_advanced")}}</a></p>
+                                            class='fas fa-plus-square-o'></i> {{trans("crudbooster.export_dialog_show_advanced")}}</a></p>
 
                             <div id='advanced_export' style='display: none'>
 

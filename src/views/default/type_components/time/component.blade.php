@@ -9,13 +9,13 @@
         <div class="{{$col_width?:'col-sm-10'}}">
             <div class="input-group">
                 @if(!$disabled)
-                    <span class="input-group-addon"><i class='fa fa-clock-o'></i></span>
+                    <span class="input-group-addon"><i class='fas fa-clock-o'></i></span>
                 @endif
                 <input type='text' title="{{$form['label']}}"
                        {{$required}} {{$readonly}} {!!$placeholder!!} {{$disabled}} class='form-control notfocus timepicker' name="{{$name}}" id="{{$name}}"
                        readonly value='{{$value}}'/>
             </div>
-            <div class="text-danger">{!! $errors->first($name)?"<i class='fa fa-info-circle'></i> ".$errors->first($name):"" !!}</div>
+            <div class="text-danger">{!! $errors->first($name)?"<i class='fas fa-info-circle'></i> ".$errors->first($name):"" !!}</div>
             <p class='help-block'>{{ @$form['help'] }}</p>
         </div>
     </div>

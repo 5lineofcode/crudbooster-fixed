@@ -4,7 +4,7 @@ This simple statistic will shown at top of grid data
 
 ```php
 $this->index_statistic = array();
-$this->index_statistic[] = ['label'=>'Total Data','count'=>DB::table('products')->count(),'icon'=>'fa fa-check','color'=>'success'];
+$this->index_statistic[] = ['label'=>'Total Data','count'=>DB::table('products')->count(),'icon'=>'fas fa-check','color'=>'success'];
 ```
 
 ## What's Next

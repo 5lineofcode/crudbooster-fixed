@@ -13,7 +13,7 @@
     <!-- Bootstrap 3.3.2 -->
     <link href="{{ asset("vendor/crudbooster/assets/adminlte/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css"/>
     <!-- Font Awesome Icons -->
-    <link href="{{asset("vendor/crudbooster/assets/adminlte/font-awesome/css")}}/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{asset("plugin/fontawesome-pro-5.7.2/css/all.min.css")}}" rel="stylesheet" type="text/css"/>
     <!-- Ionicons -->
     <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
 
@@ -24,10 +24,10 @@
 
     <!-- REQUIRED JS SCRIPTS -->
 
-    <!-- jQuery 2.2.3 -->
-    <script src="{{ asset ('vendor/crudbooster/assets/adminlte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+    <!-- jQuery 2.1.3 -->
+    <script src="{{ asset ('vendor/crudbooster/assets/adminlte/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
 
-    <!-- Bootstrap 3.4.1 JS -->
+    <!-- Bootstrap 3.3.2 JS -->
     <script src="{{ asset ('vendor/crudbooster/assets/adminlte/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset ('vendor/crudbooster/assets/adminlte/dist/js/app.js') }}" type="text/javascript"></script>
@@ -53,23 +53,23 @@
                     <a href="{{url(config('crudbooster.ADMIN_PATH'))}}" title='{{Session::get('appname')}}'
                        class="navbar-brand">{{CRUDBooster::getSetting('appname')}}</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                        <i class="fa fa-bars"></i>
+                        <i class="fas fa-bars"></i>
                     </button>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a class='btn-save-statistic' href="#" title='Auto Save Status'><i class='fa fa-save'></i> Auto Save Ready</a></li>
+                        <li><a class='btn-save-statistic' href="#" title='Auto Save Status'><i class='fas fa-save'></i> Auto Save Ready</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <li><a href="#" class='btn-show-sidebar' data-toggle="control-sidebar"><i class='fa fa-bars'></i> Add Widget</a></li>
+                        <li><a href="#" class='btn-show-sidebar' data-toggle="control-sidebar"><i class='fas fa-bars'></i> Add Widget</a></li>
 
-                        <li><a href="{{CRUDBooster::mainpath()}}"><i class='fa fa-sign-out'></i> Exit</a></li>
+                        <li><a href="{{CRUDBooster::mainpath()}}"><i class='fas fa-sign-out'></i> Exit</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-custom-menu -->

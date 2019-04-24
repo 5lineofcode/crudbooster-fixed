@@ -14,16 +14,6 @@ use Validator;
 
 class CRUDBooster
 {
-    /**
-    	Comma-delimited data output from the child table
-    */
-    public static function echoSelect2Mult($values, $table, $id, $name) {
-        $values = explode(",", $values);
-        return implode(", ", DB::table($table)->whereIn($id, $values)->pluck($name)->toArray());
-        //implode(", ", DB::table("syudo_list_pokemons_types")->whereIn("id", explode(",", $row->type))->pluck("name")->toArray())
-        
-    }
-    
     public static function uploadBase64($value, $id = null)
     {
         if (! self::myId()) {
@@ -382,6 +372,18 @@ class CRUDBooster
 
             return $module;
         }
+    }
+
+    public static function getCurrentModulePrimaryKey(){
+        $module = CRUDBooster::getCurrentModule();
+        $table_name = $module->table_name;
+        $primaryKey = CRUDBooster::pk($table_name);
+        return $primaryKey;        
+    }
+
+    public static function getModulePrimaryKey($table_name){
+        $primaryKey = CRUDBooster::pk($table_name);
+        return $primaryKey;        
     }
 
     public static function getCurrentDashboardId()
@@ -1045,17 +1047,15 @@ class CRUDBooster
 
     public static function insertLog($description, $details = '')
     {
-        if (CRUDBooster::getSetting('api_debug_mode')) {
-            $a = [];
-            $a['created_at'] = date('Y-m-d H:i:s');
-            $a['ipaddress'] = $_SERVER['REMOTE_ADDR'];
-            $a['useragent'] = $_SERVER['HTTP_USER_AGENT'];
-            $a['url'] = Request::url();
-            $a['description'] = $description;
-            $a['details'] = $details;
-            $a['id_cms_users'] = self::myId();
-            DB::table('cms_logs')->insert($a);
-        }
+        $a = [];
+        $a['created_at'] = date('Y-m-d H:i:s');
+        $a['ipaddress'] = $_SERVER['REMOTE_ADDR'];
+        $a['useragent'] = $_SERVER['HTTP_USER_AGENT'];
+        $a['url'] = Request::url();
+        $a['description'] = $description;
+        $a['details'] = $details;
+        $a['id_cms_users'] = self::myId();
+        DB::table('cms_logs')->insert($a);
     }
 
     public static function referer()
@@ -1646,7 +1646,7 @@ class CRUDBooster
 	        | ----------------------------------------------------------------------     
 	        | @label       = Label of action 
 	        | @url         = Target URL, you can use field alias. e.g : [id], [name], [title], etc
-	        | @icon        = Font awesome class icon. e.g : fa fa-bars
+	        | @icon        = Font awesome class icon. e.g : fas fa-bars
 	        | @color 	   = Default is primary. (primary, warning, succecss, info)     
 	        | @showIf 	   = If condition when action show. Use field alias. e.g : [id] == 1
 	        | 

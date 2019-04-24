@@ -22,11 +22,11 @@
     @endpush
 
     <ul class="nav nav-tabs">
-        <li role="presentation"><a href="{{Route('ModulsControllerGetStep1',['id'=>$id])}}"><i class='fa fa-info'></i> Step 1 - Module Information</a></li>
-        <li role="presentation" class="active"><a href="{{Route('ModulsControllerGetStep2',['id'=>$id])}}"><i class='fa fa-table'></i> Step 2 - Table
+        <li role="presentation"><a href="{{Route('ModulsControllerGetStep1',['id'=>$id])}}"><i class='fas fa-info'></i> Step 1 - Module Information</a></li>
+        <li role="presentation" class="active"><a href="{{Route('ModulsControllerGetStep2',['id'=>$id])}}"><i class='fas fa-table'></i> Step 2 - Table
                 Display</a></li>
-        <li role="presentation"><a href="{{Route('ModulsControllerGetStep3',['id'=>$id])}}"><i class='fa fa-plus-square-o'></i> Step 3 - Form Display</a></li>
-        <li role="presentation"><a href="{{Route('ModulsControllerGetStep4',['id'=>$id])}}"><i class='fa fa-wrench'></i> Step 4 - Configuration</a></li>
+        <li role="presentation"><a href="{{Route('ModulsControllerGetStep3',['id'=>$id])}}"><i class='fas fa-plus-square-o'></i> Step 3 - Form Display</a></li>
+        <li role="presentation"><a href="{{Route('ModulsControllerGetStep4',['id'=>$id])}}"><i class='fas fa-wrench'></i> Step 4 - Configuration</a></li>
     </ul>
     @push('head')
         <style>
@@ -176,7 +176,7 @@
                 if (!table) return false;
                 if (!v) return false;
 
-                t.after("<ul class='sub'><li><i class='fa fa-spin fa-spinner'></i> Loading...</li></ul>");
+                t.after("<ul class='sub'><li><i class='fas fa-spin fa-spinner'></i> Loading...</li></ul>");
 
                 $.get("{{CRUDBooster::mainpath('table-columns')}}/" + table, function (response) {
                     t.next("ul").remove();
@@ -197,7 +197,7 @@
 
                 if (!table) return false;
 
-                t.after("<ul class='sub'><li><i class='fa fa-spin fa-spinner'></i> Loading...</li></ul>");
+                t.after("<ul class='sub'><li><i class='fas fa-spin fa-spinner'></i> Loading...</li></ul>");
 
                 $.get("{{CRUDBooster::mainpath('table-columns')}}/" + table, function (response) {
                     t.next("ul").remove();
@@ -336,10 +336,10 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0)" class="btn btn-info btn-plus"><i class='fa fa-plus'></i></a>
-                                    <a href="javascript:void(0)" class="btn btn-danger btn-delete"><i class='fa fa-trash'></i></a>
-                                    <a href="javascript:void(0)" class="btn btn-success btn-up"><i class='fa fa-arrow-up'></i></a>
-                                    <a href="javascript:void(0)" class="btn btn-success btn-down"><i class='fa fa-arrow-down'></i></a>
+                                    <a href="javascript:void(0)" class="btn btn-info btn-plus"><i class='fas fa-plus'></i></a>
+                                    <a href="javascript:void(0)" class="btn btn-danger btn-delete"><i class='fas fa-trash'></i></a>
+                                    <a href="javascript:void(0)" class="btn btn-success btn-up"><i class='fas fa-arrow-up'></i></a>
+                                    <a href="javascript:void(0)" class="btn btn-success btn-down"><i class='fas fa-arrow-down'></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -369,10 +369,10 @@
                             </select>
                         </td>
                         <td>
-                            <a href="javascript:void(0)" class="btn btn-info btn-plus"><i class='fa fa-plus'></i></a>
-                            <a href="javascript:void(0)" class="btn btn-danger btn-delete"><i class='fa fa-trash'></i></a>
-                            <a href="javascript:void(0)" class="btn btn-success btn-up"><i class='fa fa-arrow-up'></i></a>
-                            <a href="javascript:void(0)" class="btn btn-success btn-down"><i class='fa fa-arrow-down'></i></a>
+                            <a href="javascript:void(0)" class="btn btn-info btn-plus"><i class='fas fa-plus'></i></a>
+                            <a href="javascript:void(0)" class="btn btn-danger btn-delete"><i class='fas fa-trash'></i></a>
+                            <a href="javascript:void(0)" class="btn btn-success btn-up"><i class='fas fa-arrow-up'></i></a>
+                            <a href="javascript:void(0)" class="btn btn-success btn-down"><i class='fas fa-arrow-down'></i></a>
                         </td>
                     </tr>
 

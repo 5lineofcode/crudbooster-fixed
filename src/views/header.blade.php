@@ -7,16 +7,17 @@
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
+        <a href="#" data-toggle="offcanvas" role="button" style="position: absolute;top: 0px;left: 0px;padding: 10px 10px;margin-top: 4px;color: #FFF;">
+            <i class="fas fa-bars"></i>
         </a>
+
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
 
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" title='Notifications' aria-expanded="false">
-                        <i id='icon_notification' class="fa fa-bell-o"></i>
+                        <i id='icon_notification' class="fas fa-bell-o"></i>
                         <span id='notification_count' class="label label-danger" style="display:none">0</span>
                     </a>
                     <ul id='list_notifications' class="dropdown-menu">
@@ -66,10 +67,10 @@
                         <li class="user-footer">
                             <div class="pull-{{ trans('crudbooster.left') }}">
                                 <a href="{{ route('AdminCmsUsersControllerGetProfile') }}" class="btn btn-default btn-flat"><i
-                                            class='fa fa-user'></i> {{trans("crudbooster.label_button_profile")}}</a>
+                                            class='fas fa-user'></i> {{trans("crudbooster.label_button_profile")}}</a>
                             </div>
                             <div class="pull-{{ trans('crudbooster.right') }}">
-                                <a title='Lock Screen' href="{{ route('getLockScreen') }}" class='btn btn-default btn-flat'><i class='fa fa-key'></i></a>
+                                <a title='Lock Screen' href="{{ route('getLockScreen') }}" class='btn btn-default btn-flat'><i class='fas fa-key'></i></a>
                                 <a href="javascript:void(0)" onclick="swal({
                                         title: '{{trans('crudbooster.alert_want_to_logout')}}',
                                         type:'info',
@@ -82,7 +83,7 @@
                                         }, function(){
                                         location.href = '{{ route("getLogout") }}';
 
-                                        });" title="{{trans('crudbooster.button_logout')}}" class="btn btn-danger btn-flat"><i class='fa fa-power-off'></i></a>
+                                        });" title="{{trans('crudbooster.button_logout')}}" class="btn btn-danger btn-flat"><i class='fas fa-power-off'></i></a>
                             </div>
                         </li>
                     </ul>

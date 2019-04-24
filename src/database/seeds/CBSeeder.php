@@ -308,7 +308,7 @@ class Cms_modulsSeeder extends Seeder
 
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => trans('crudbooster.Notifications'),
-                'icon' => 'fa fa-cog',
+                'icon' => 'fas fa-cog',
                 'path' => 'notifications',
                 'table_name' => 'cms_notifications',
                 'controller' => 'NotificationsController',
@@ -319,7 +319,7 @@ class Cms_modulsSeeder extends Seeder
 
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => trans('crudbooster.Privileges'),
-                'icon' => 'fa fa-cog',
+                'icon' => 'fas fa-cog',
                 'path' => 'privileges',
                 'table_name' => 'cms_privileges',
                 'controller' => 'PrivilegesController',
@@ -330,7 +330,7 @@ class Cms_modulsSeeder extends Seeder
 
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => trans('crudbooster.Privileges_Roles'),
-                'icon' => 'fa fa-cog',
+                'icon' => 'fas fa-cog',
                 'path' => 'privileges_roles',
                 'table_name' => 'cms_privileges_roles',
                 'controller' => 'PrivilegesRolesController',
@@ -341,7 +341,7 @@ class Cms_modulsSeeder extends Seeder
 
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => trans('crudbooster.Users_Management'),
-                'icon' => 'fa fa-users',
+                'icon' => 'fas fa-users',
                 'path' => 'users',
                 'table_name' => 'cms_users',
                 'controller' => 'AdminCmsUsersController',
@@ -352,7 +352,7 @@ class Cms_modulsSeeder extends Seeder
 
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => trans('crudbooster.settings'),
-                'icon' => 'fa fa-cog',
+                'icon' => 'fas fa-cog',
                 'path' => 'settings',
                 'table_name' => 'cms_settings',
                 'controller' => 'SettingsController',
@@ -363,7 +363,7 @@ class Cms_modulsSeeder extends Seeder
 
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => trans('crudbooster.Module_Generator'),
-                'icon' => 'fa fa-database',
+                'icon' => 'fas fa-database',
                 'path' => 'module_generator',
                 'table_name' => 'cms_moduls',
                 'controller' => 'ModulsController',
@@ -374,7 +374,7 @@ class Cms_modulsSeeder extends Seeder
 
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => trans('crudbooster.Menu_Management'),
-                'icon' => 'fa fa-bars',
+                'icon' => 'fas fa-bars',
                 'path' => 'menu_management',
                 'table_name' => 'cms_menus',
                 'controller' => 'MenusController',
@@ -385,7 +385,7 @@ class Cms_modulsSeeder extends Seeder
 
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => trans('crudbooster.Email_Templates'),
-                'icon' => 'fa fa-envelope-o',
+                'icon' => 'fas fa-envelope-o',
                 'path' => 'email_templates',
                 'table_name' => 'cms_email_templates',
                 'controller' => 'EmailTemplatesController',
@@ -396,7 +396,7 @@ class Cms_modulsSeeder extends Seeder
 
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => trans('crudbooster.Statistic_Builder'),
-                'icon' => 'fa fa-dashboard',
+                'icon' => 'fas fa-dashboard',
                 'path' => 'statistic_builder',
                 'table_name' => 'cms_statistics',
                 'controller' => 'StatisticBuilderController',
@@ -407,7 +407,7 @@ class Cms_modulsSeeder extends Seeder
 
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => trans('crudbooster.API_Generator'),
-                'icon' => 'fa fa-cloud-download',
+                'icon' => 'fas fa-cloud-download',
                 'path' => 'api_generator',
                 'table_name' => '',
                 'controller' => 'ApiCustomController',
@@ -418,7 +418,7 @@ class Cms_modulsSeeder extends Seeder
 
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => trans('crudbooster.Log_User_Access'),
-                'icon' => 'fa fa-flag-o',
+                'icon' => 'fas fa-flag-o',
                 'path' => 'logs',
                 'table_name' => 'cms_logs',
                 'controller' => 'LogsController',

@@ -15,7 +15,7 @@
             <input type="hidden" name="input-longitude-{{$name}}" id="input-longitude-{{$name}}" value="{{ ($form['longitude'])?$row->$form['longitude']:0 }}">
             <span class="input-group-btn">
 						        <button class="btn btn-primary" onclick="showMapModal{{$name}}()" type="button"><i
-                                            class='fa fa-map-marker'></i> Browse Map</button>
+                                            class='fas fa-map-marker'></i> Browse Map</button>
 						      </span>
         </div><!-- /input-group -->
 
@@ -25,7 +25,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title"><i class='fa fa-search'></i> Browse Map</h4>
+                        <h4 class="modal-title"><i class='fas fa-search'></i> Browse Map</h4>
                     </div>
                     <div class="modal-body">
 

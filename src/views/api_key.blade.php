@@ -3,9 +3,9 @@
 @section('content')
 
     <ul class="nav nav-tabs">
-        <li><a href="{{ CRUDBooster::mainpath() }}"><i class='fa fa-file'></i> API Documentation</a></li>
-        <li class="active"><a href="{{ CRUDBooster::mainpath('screet-key') }}"><i class='fa fa-key'></i> API Secret Key</a></li>
-        <li><a href="{{ CRUDBooster::mainpath('generator') }}"><i class='fa fa-cog'></i> API Generator</a></li>
+        <li><a href="{{ CRUDBooster::mainpath() }}"><i class='fas fa-file'></i> API Documentation</a></li>
+        <li class="active"><a href="{{ CRUDBooster::mainpath('screet-key') }}"><i class='fas fa-key'></i> API Secret Key</a></li>
+        <li><a href="{{ CRUDBooster::mainpath('generator') }}"><i class='fas fa-cog'></i> API Generator</a></li>
     </ul>
 
     <div class='box'>
@@ -13,7 +13,7 @@
         <div class='box-body'>
 
 
-            <p><a title='Generate API Key' class='btn btn-primary' href='javascript:void(0)' onclick='generate_screet_key()'><i class='fa fa-key'></i> Generate
+            <p><a title='Generate API Key' class='btn btn-primary' href='javascript:void(0)' onclick='generate_screet_key()'><i class='fas fa-key'></i> Generate
                     Secret Key</a></p>
 
             <table id='table-apikey' class='table table-striped table-bordered'>

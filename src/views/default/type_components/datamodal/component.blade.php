@@ -18,15 +18,15 @@
             <input type="hidden" name="{{$name}}" class="input-id" value="{{$value}}">
             <input type="text" class="form-control input-label {{$required?"required":""}}" {{$required?"required":""}} value="{{$datamodal_value}}" readonly>
             <span class="input-group-btn">
-        <button class="btn btn-primary" onclick="showModal{{$name}}()" type="button"><i class='fa fa-search'></i> {{trans('crudbooster.datamodal_browse_data')}}</button>
+        <button class="btn btn-primary" onclick="showModal{{$name}}()" type="button"><i class='fas fa-search'></i> {{trans('crudbooster.datamodal_browse_data')}}</button>
                 <?php if(strlen($form['datamodal_module_path']) > 1){ ?>
                 <a class="btn btn-info" href="{{CRUDBooster::adminPath()}}/{{$form['datamodal_module_path']}}" target="_blank"><i
-                            class='fa fa-edit'></i> {{$form['label']}}</a>
+                            class='fas fa-edit'></i> {{$form['label']}}</a>
                 <?php } ?>
       </span>
         </div><!-- /input-group -->
 
-        <div class="text-danger">{!! $errors->first($name)?"<i class='fa fa-info-circle'></i> ".$errors->first($name):"" !!}</div>
+        <div class="text-danger">{!! $errors->first($name)?"<i class='fas fa-info-circle'></i> ".$errors->first($name):"" !!}</div>
         <p class='help-block'>{{ @$form['help'] }}</p>
     </div>
 </div>
@@ -65,7 +65,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class='fa fa-search'></i> {{trans('crudbooster.datamodal_browse_data')}} | {{$form['label']}}</h4>
+                    <h4 class="modal-title"><i class='fas fa-search'></i> {{trans('crudbooster.datamodal_browse_data')}} | {{$form['label']}}</h4>
                 </div>
                 <div class="modal-body">
                     <iframe id='iframe-modal-{{$name}}' style="border:0;height: 430px;width: 100%" src=""></iframe>

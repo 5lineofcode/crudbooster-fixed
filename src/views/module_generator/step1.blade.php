@@ -40,17 +40,17 @@
 
     <ul class="nav nav-tabs">
         @if($id)
-            <li role="presentation" class="active"><a href="{{Route('ModulsControllerGetStep1',['id'=>$id])}}"><i class='fa fa-info'></i> Step 1 - Module
+            <li role="presentation" class="active"><a href="{{Route('ModulsControllerGetStep1',['id'=>$id])}}"><i class='fas fa-info'></i> Step 1 - Module
                     Information</a></li>
-            <li role="presentation"><a href="{{Route('ModulsControllerGetStep2',['id'=>$id])}}"><i class='fa fa-table'></i> Step 2 - Table Display</a></li>
-            <li role="presentation"><a href="{{Route('ModulsControllerGetStep3',['id'=>$id])}}"><i class='fa fa-plus-square-o'></i> Step 3 - Form Display</a>
+            <li role="presentation"><a href="{{Route('ModulsControllerGetStep2',['id'=>$id])}}"><i class='fas fa-table'></i> Step 2 - Table Display</a></li>
+            <li role="presentation"><a href="{{Route('ModulsControllerGetStep3',['id'=>$id])}}"><i class='fas fa-plus-square-o'></i> Step 3 - Form Display</a>
             </li>
-            <li role="presentation"><a href="{{Route('ModulsControllerGetStep4',['id'=>$id])}}"><i class='fa fa-wrench'></i> Step 4 - Configuration</a></li>
+            <li role="presentation"><a href="{{Route('ModulsControllerGetStep4',['id'=>$id])}}"><i class='fas fa-wrench'></i> Step 4 - Configuration</a></li>
         @else
-            <li role="presentation" class="active"><a href="#"><i class='fa fa-info'></i> Step 1 - Module Information</a></li>
-            <li role="presentation"><a href="#"><i class='fa fa-table'></i> Step 2 - Table Display</a></li>
-            <li role="presentation"><a href="#"><i class='fa fa-plus-square-o'></i> Step 3 - Form Display</a></li>
-            <li role="presentation"><a href="#"><i class='fa fa-wrench'></i> Step 4 - Configuration</a></li>
+            <li role="presentation" class="active"><a href="#"><i class='fas fa-info'></i> Step 1 - Module Information</a></li>
+            <li role="presentation"><a href="#"><i class='fas fa-table'></i> Step 2 - Table Display</a></li>
+            <li role="presentation"><a href="#"><i class='fas fa-plus-square-o'></i> Step 3 - Form Display</a></li>
+            <li role="presentation"><a href="#"><i class='fas fa-wrench'></i> Step 4 - Configuration</a></li>
         @endif
     </ul>
 
@@ -62,6 +62,7 @@
             <form method="post" action="{{Route('ModulsControllerPostStep2')}}">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <input type="hidden" name="id" value="{{$row->id}}">
+
                 <div class="form-group">
                     <label for="">Table</label>
                     <select name="table" id="table" required class="select2 form-control" value="{{$row->table_name}}">
@@ -76,19 +77,26 @@
                         Do not use cms_* as prefix on your tables name
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <label for="">Module Name</label>
                     <input type="text" class="form-control" required name="name" value="{{$row->name}}">
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="">Icon</label>
                     <select name="icon" id="icon" required class="select2 form-control">
                         @foreach($fontawesome as $f)
-                            <option {{($row->icon == 'fa fa-'.$f)?"selected":""}} value="fa fa-{{$f}}">{{$f}}</option>
+                            <option {{($row->icon == 'fas fa-'.$f)?"selected":""}} value="fas fa-{{$f}}"><i class="fas fa-{{$f}}"></i> {{$f}}</option>
                         @endforeach
                     </select>
+                </div> --}}
+
+                <div class="form-group">
+                    <label for="">Icon (FontAwesomeIcon PRO)</label>
+                    <div class="jqxFontAwesomeIconPicker" name="icon" value="{{$row->icon}}"></div>
                 </div>
+
                 <div class="form-group">
                     <label for="">Module Slug</label>
                     <input type="text" class="form-control" required name="path" value="{{$row->path}}">

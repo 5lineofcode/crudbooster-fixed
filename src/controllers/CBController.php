@@ -2,7 +2,6 @@
 
 error_reporting(E_ALL ^ E_NOTICE);
 
-
 use CB;
 use CRUDBooster;
 use Illuminate\Support\Facades\App;
@@ -191,7 +190,6 @@ class CBController extends Controller
 
     public function cbView($template, $data)
     {
-        header("Content-Type: text/html");
         $this->cbLoader();
         echo view($template, $data);
     }
@@ -561,7 +559,7 @@ class CBController extends Controller
                 if (@$col['download']) {
                     $url = (strpos($value, 'http://') !== false) ? $value : asset($value).'?download=1';
                     if ($value) {
-                        $value = "<a class='btn btn-xs btn-primary' href='$url' target='_blank' title='Download File'><i class='fa fa-download'></i> Download</a>";
+                        $value = "<a class='btn btn-xs btn-primary' href='$url' target='_blank' title='Download File'><i class='fas fa-download'></i> Download</a>";
                     } else {
                         $value = " - ";
                     }
@@ -964,7 +962,39 @@ class CBController extends Controller
                 $array_input[$name] = implode('|', $ai);
             }
         }
+        /*
+        !Temporary Fix for Email!
+        */
+        if($array_input["email"]){
+            
+            $module = CRUDBooster::getCurrentModule();
+            $table_name = $module->table_name;
+            $primaryKey = CRUDBooster::pk($table_name);
 
+            $input = \Illuminate\Support\Facades\Input::get();
+            $email = $input["email"];
+            
+            $user = DB::table($table_name)
+                ->where('email',$email)
+                ->where($primaryKey,"<>",$id)
+                ->first();
+
+            if($user){
+
+                $res = redirect()->back()->with("errors", $message)->with([
+                    'message' => "This email is being used by another account.",
+                    'message_type' => 'warning',
+                ])->withInput();
+                \Session::driver()->save();
+                $res->send();
+                exit;
+            }
+            unset($array_input["email"]);
+        }
+        /*
+        !End
+        */
+        
         $validator = Validator::make($request_all, $array_input);
 
         if ($validator->fails()) {
@@ -1048,6 +1078,9 @@ class CBController extends Controller
             $password_candidate = explode(',', config('crudbooster.PASSWORD_FIELDS_CANDIDATE'));
             if (in_array($name, $password_candidate)) {
                 if (! empty($this->arr[$name])) {
+                    if($name=="password"){
+                        $_SESSION["unhashed_password"] = $this->arr[$name];
+                    }
                     $this->arr[$name] = Hash::make($this->arr[$name]);
                 } else {
                     unset($this->arr[$name]);
@@ -1133,6 +1166,7 @@ class CBController extends Controller
     public function postAddSave()
     {
         $this->cbLoader();
+
         if (! CRUDBooster::isCreate() && $this->global_privilege == false) {
             CRUDBooster::insertLog(trans('crudbooster.log_try_add_save', [
                 'name' => Request::input($this->title_field),
@@ -1140,6 +1174,7 @@ class CBController extends Controller
             ]));
             CRUDBooster::redirect(CRUDBooster::adminPath(), trans("crudbooster.denied_access"));
         }
+
 
         $this->validation();
         $this->input_assignment();
@@ -1150,13 +1185,10 @@ class CBController extends Controller
 
         $this->hook_before_add($this->arr);
 
+
 //         $this->arr[$this->primary_key] = $id = CRUDBooster::newId($this->table); //error on sql server
         $lastInsertId = $id = DB::table($this->table)->insertGetId($this->arr);
-        
-        //fix bug if primary key is uuid
-        if($this->arr[$this->primary_key]!=$id)
-            $id = $this->arr[$this->primary_key];
-        
+
         //Looping Data Input Again After Insert
         foreach ($this->data_inputan as $ro) {
             $name = $ro['name'];
@@ -1213,19 +1245,16 @@ class CBController extends Controller
                 $getColName = Request::get($name.'-'.$columns[0]['name']);
                 $count_input_data = ($getColName)?(count($getColName) - 1):0;
                 $child_array = [];
-                $fk = $ro['foreign_key'];
 
                 for ($i = 0; $i <= $count_input_data; $i++) {
+                    $fk = $ro['foreign_key'];
                     $column_data = [];
+                    $column_data[$fk] = $id;
                     foreach ($columns as $col) {
                         $colname = $col['name'];
-                        $colvalue = Request::get($name.'-'.$colname)[$i];
-                        if(!empty($colvalue)) $column_data[$colname] = $colvalue;
+                        $column_data[$colname] = Request::get($name.'-'.$colname)[$i];
                     }
-                    if(!empty($column_data)){
-                        $column_data[$fk] = $id;
-                        $child_array[] = $column_data;
-                    }
+                    $child_array[] = $column_data;
                 }
 
                 $childtable = CRUDBooster::parseSqlTable($ro['table'])['table'];
@@ -1328,7 +1357,7 @@ class CBController extends Controller
             }
 
             if ($ro['type'] == 'select2') {
-                if ($ro['relationship_table'] && $ro["datatable_orig"] == "") {
+                if ($ro['relationship_table']) {
                     $datatable = explode(",", $ro['datatable'])[0];
 
                     $foreignKey2 = CRUDBooster::getForeignKey($datatable, $ro['relationship_table']);
@@ -1346,11 +1375,6 @@ class CBController extends Controller
                         }
                     }
                 }
-                if ($ro['relationship_table'] && $ro["datatable_orig"] != "") {
-                    $params = explode("|", $ro['datatable_orig']);
-                    if(!isset($params[2])) $params[2] = "id";
-                    DB::table($params[0])->where($params[2], $id)->update([$params[1] => implode(",",$inputdata)]);
-                }
             }
 
             if ($ro['type'] == 'child') {
@@ -1367,20 +1391,21 @@ class CBController extends Controller
                 $childtablePK = CB::pk($childtable);
 
                 for ($i = 0; $i <= $count_input_data; $i++) {
+
                     $column_data = [];
+                    $column_data[$childtablePK] = $lastId;
+                    $column_data[$fk] = $id;
                     foreach ($columns as $col) {
                         $colname = $col['name'];
-                        $colvalue = Request::get($name.'-'.$colname)[$i];
-                        if(!empty($colvalue)) $column_data[$colname] = $colvalue;
+                        $column_data[$colname] = Request::get($name.'-'.$colname)[$i];
                     }
-                    if(!empty($column_data)){
-                        $column_data[$childtablePK] = $lastId;
-                        $column_data[$fk] = $id;
-                        $child_array[] = $column_data;
-                        $lastId++;
-                    }
+                    $child_array[] = $column_data;
+
+                    $lastId++;
                 }
+
                 $child_array = array_reverse($child_array);
+
                 DB::table($childtable)->insert($child_array);
             }
         }
@@ -1389,13 +1414,17 @@ class CBController extends Controller
 
         $this->return_url = ($this->return_url) ? $this->return_url : Request::get('return_url');
 
-        //insert log
-        $old_values = json_decode(json_encode($row), true);
-        CRUDBooster::insertLog(trans("crudbooster.log_update", [
-            'name' => $this->arr[$this->title_field],
-            'module' => CRUDBooster::getCurrentModule()->name,
-        ]), LogsController::displayDiff($old_values, $this->arr));
-
+        //! Insert logs error fix because temporary email update
+        if($old_values){
+            //insert log
+            $old_values = json_decode(json_encode($row), true);
+            CRUDBooster::insertLog(trans("crudbooster.log_update", [
+                'name' => $this->arr[$this->title_field],
+                'module' => CRUDBooster::getCurrentModule()->name,
+            ]), LogsController::displayDiff($old_values, $this->arr));
+        }
+        //! End
+        
         if ($this->return_url) {
             CRUDBooster::redirect($this->return_url, trans("crudbooster.alert_update_data_success"), 'success');
         } else {

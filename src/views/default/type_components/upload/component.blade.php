@@ -20,13 +20,24 @@
             <?php endif;
             echo "<input type='hidden' name='_$name' value='$value'/>";
             else:
-                echo "<p class='text-danger'><i class='fa fa-exclamation-triangle'></i> ".trans("crudbooster.file_broken")."</p>";
+                echo "<p class='text-danger'><i class='fas fa-exclamation-triangle'></i> ".trans("crudbooster.file_broken")."</p>";
             endif;
+
+
+            /*
+            !Fix Delete Image Error
+            ? change $row->id to $row->pk;
+            */
+            $module = CRUDBooster::getCurrentModule();
+            $table_name = $module->name;
+            $primaryKey = CRUDBooster::pk($table_name);
+            $row->pk = $row->$primaryKey;
             ?>
+
             @if(!$readonly || !$disabled)
                 <p><a class='btn btn-danger btn-delete btn-sm' onclick="if(!confirm('{{trans("crudbooster.delete_title_confirm")}}')) return false"
-                      href='{{url(CRUDBooster::mainpath("delete-image?image=".$value."&id=".$row->id."&column=".$name))}}'><i
-                                class='fa fa-ban'></i> {{trans('crudbooster.text_delete')}} </a></p>
+                      href='{{url(CRUDBooster::mainpath("delete-image?image=".$value."&id=".$row->pk."&column=".$name))}}'><i
+                                class='fas fa-ban'></i> {{trans('crudbooster.text_delete')}} </a></p>
             @endif
         @endif
         @if(!$value)
@@ -35,7 +46,7 @@
         @else
             <p class='text-muted'><em>{{trans("crudbooster.notice_delete_file_upload")}}</em></p>
         @endif
-        <div class="text-danger">{!! $errors->first($name)?"<i class='fa fa-info-circle'></i> ".$errors->first($name):"" !!}</div>
+        <div class="text-danger">{!! $errors->first($name)?"<i class='fas fa-info-circle'></i> ".$errors->first($name):"" !!}</div>
 
     </div>
 

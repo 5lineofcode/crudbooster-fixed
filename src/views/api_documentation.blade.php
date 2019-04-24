@@ -3,9 +3,9 @@
 @section('content')
 
     <ul class="nav nav-tabs">
-        <li class="active"><a href="{{ CRUDBooster::mainpath() }}"><i class='fa fa-file'></i> API Documentation</a></li>
-        <li><a href="{{ CRUDBooster::mainpath('screet-key') }}"><i class='fa fa-key'></i> API Secret Key</a></li>
-        <li><a href="{{ CRUDBooster::mainpath('generator') }}"><i class='fa fa-cog'></i> API Generator</a></li>
+        <li class="active"><a href="{{ CRUDBooster::mainpath() }}"><i class='fas fa-file'></i> API Documentation</a></li>
+        <li><a href="{{ CRUDBooster::mainpath('screet-key') }}"><i class='fas fa-key'></i> API Secret Key</a></li>
+        <li><a href="{{ CRUDBooster::mainpath('generator') }}"><i class='fas fa-cog'></i> API Generator</a></li>
     </ul>
 
     <div class='box'>
@@ -94,9 +94,9 @@
                         <td>
                             <a href='javascript:void(0)' title='API {{$ac->nama}}' style='color:#009fe3' class='link_name_api'><?=$api->nama;?></a> &nbsp;
                             <sup>
-                                <a title='Delete this API' onclick="deleteApi({{$api->id}})" href="javascript:void(0)"><i class='fa fa-trash'></i></a>
+                                <a title='Delete this API' onclick="deleteApi({{$api->id}})" href="javascript:void(0)"><i class='fas fa-trash'></i></a>
                                 &nbsp; <a title='Edit This API' href="{{url(config('crudbooster.ADMIN_PATH').'/api_generator/edit-api').'/'.$api->id}}"><i
-                                            class='fa fa-pencil'></i></a>
+                                            class='fas fa-pencil'></i></a>
                             </sup>
                             <div class='detail_api' style='display:none'>
                                 <table class='table table-bordered'>
@@ -149,7 +149,7 @@
                                                 @endforeach
                                                 @if($i == 0)
                                                     <tr>
-                                                        <td colspan='4' align="center"><i class='fa fa-search'></i> There is no parameter</td>
+                                                        <td colspan='4' align="center"><i class='fas fa-search'></i> There is no parameter</td>
                                                     </tr>
                                                 @endif
                                                 </tbody>

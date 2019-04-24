@@ -5,10 +5,11 @@
 
 <!-- REQUIRED JS SCRIPTS -->
 
-<!-- jQuery 2.2.3 -->
-<script src="{{ asset ('vendor/crudbooster/assets/adminlte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+<!-- jQuery 2.1.3 -->
 
-<!-- Bootstrap 3.4.1 JS -->
+<script src="{{ asset ('vendor/crudbooster/assets/adminlte/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+
+<!-- Bootstrap 3.3.2 JS -->
 <script src="{{ asset ('vendor/crudbooster/assets/adminlte/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset ('vendor/crudbooster/assets/adminlte/dist/js/app.js') }}" type="text/javascript"></script>
@@ -17,7 +18,7 @@
 <script src="{{ asset ('vendor/crudbooster/assets/adminlte/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
 <link rel="stylesheet" href="{{ asset ('vendor/crudbooster/assets/adminlte/plugins/datepicker/datepicker3.css') }}">
 
-<!--BOOTSTRAP DATERANGEPICKER 2.1.27 AND MOMENT 2.13.0 -->
+<!--BOOTSTRAP DATERANGEPICKER-->
 <script src="{{ asset ('vendor/crudbooster/assets/adminlte/plugins/daterangepicker/moment.min.js') }}"></script>
 <script src="{{ asset ('vendor/crudbooster/assets/adminlte/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <link rel="stylesheet" href="{{ asset ('vendor/crudbooster/assets/adminlte/plugins/daterangepicker/daterangepicker-bs3.css') }}">
@@ -56,6 +57,10 @@
         $('.datatables-simple').DataTable();
     })
 </script>
-<script src="{{asset('vendor/crudbooster/assets/js/main.js').'?r='.time()}}"></script>
+<script src="https://jqwidgets.com/public/jqwidgets/jqx-all.js"></script>
+<script src="{{asset('plugin/jqwidgets-extreme/js/jqwidgets-extreme.js').'?r='.time()}}"></script>
+
+{{-- <script src="{{asset('vendor/crudbooster/assets/js/main.js').'?r='.time()}}"></script> --}}
+<script src="{{asset('vendor/crudbooster/assets/js/logic-helper.js').'?r='.time()}}"></script>
 
 	

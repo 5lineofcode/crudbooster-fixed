@@ -26,7 +26,7 @@
 
 
     @if(g('return_url'))
-        <p><a href='{{g("return_url")}}'><i class='fa fa-chevron-circle-{{ trans('crudbooster.left') }}'></i>
+        <p><a href='{{g("return_url")}}'><i class='fas fa-chevron-circle-{{ trans('crudbooster.left') }}'></i>
                 &nbsp; {{trans('crudbooster.form_back_to_list',['module'=>urldecode(g('label'))])}}</a></p>
     @endif
 
@@ -36,7 +36,7 @@
                 <table class='table table-bordered'>
                     <tbody>
                     <tr class='active'>
-                        <td colspan="2"><strong><i class='fa fa-bars'></i> {{ ucwords(urldecode(g('label'))) }}</strong></td>
+                        <td colspan="2"><strong><i class='fas fa-bars'></i> {{ ucwords(urldecode(g('label'))) }}</strong></td>
                     </tr>
                     @foreach(explode(',',urldecode(g('parent_columns'))) as $c)
                         <tr>
@@ -62,18 +62,18 @@
                 <div class="pull-{{ trans('crudbooster.left') }}">
                     <div class="selected-action" style="display:inline-block;position:relative;">
                         <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
-                                    class='fa fa-check-square-o'></i> {{trans("crudbooster.button_selected_action")}}
-                            <span class="fa fa-caret-down"></span></button>
+                                    class='fas fa-check-square-o'></i> {{trans("crudbooster.button_selected_action")}}
+                            <span class="fas fa-caret-down"></span></button>
                         <ul class="dropdown-menu">
                             @if($button_delete && CRUDBooster::isDelete())
                                 <li><a href="javascript:void(0)" data-name='delete' title='{{trans('crudbooster.action_delete_selected')}}'><i
-                                                class="fa fa-trash"></i> {{trans('crudbooster.action_delete_selected')}}</a></li>
+                                                class="fas fa-trash"></i> {{trans('crudbooster.action_delete_selected')}}</a></li>
                             @endif
 
                             @if($button_selected)
                                 @foreach($button_selected as $button)
                                     <li><a href="javascript:void(0)" data-name='{{$button["name"]}}' title='{{$button["label"]}}'><i
-                                                    class="fa fa-{{$button['icon']}}"></i> {{$button['label']}}</a></li>
+                                                    class="fas fa-{{$button['icon']}}"></i> {{$button['label']}}</a></li>
                                 @endforeach
                             @endif
 
@@ -86,7 +86,7 @@
                 @if($button_filter)
                     <a style="margin-top:-23px" href="javascript:void(0)" id='btn_advanced_filter' data-url-parameter='{{$build_query}}'
                        title='{{trans('crudbooster.filter_dialog_title')}}' class="btn btn-sm btn-default {{(Request::get('filter_column'))?'active':''}}">
-                        <i class="fa fa-filter"></i> {{trans("crudbooster.button_filter")}}
+                        <i class="fas fa-filter"></i> {{trans("crudbooster.button_filter")}}
                     </a>
                 @endif
 
@@ -105,9 +105,9 @@
                                 $build_query = (Request::all()) ? $build_query : "";
                                 ?>
                                 <button type='button' onclick='location.href="{{ CRUDBooster::mainpath().$build_query}}"'
-                                        title="{{trans('crudbooster.button_reset')}}" class='btn btn-sm btn-warning'><i class='fa fa-ban'></i></button>
+                                        title="{{trans('crudbooster.button_reset')}}" class='btn btn-sm btn-warning'><i class='fas fa-ban'></i></button>
                             @endif
-                            <button type='submit' class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                            <button type='submit' class="btn btn-sm btn-default"><i class="fas fa-search"></i></button>
                         </div>
                     </div>
                 </form>

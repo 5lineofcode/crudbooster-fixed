@@ -133,7 +133,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <strong>Menu Order (Active)</strong> <span id='menu-saved-info' style="display:none" class='pull-right text-success'><i
-                                class='fa fa-check'></i> Menu Saved !</span>
+                                class='fas fa-check'></i> Menu Saved !</span>
                 </div>
                 <div class="panel-body clearfix">
                     <ul class='draggable-menu draggable-menu-active'>
@@ -145,14 +145,14 @@
                             @endphp
                             <li data-id='{{$menu->id}}' data-name='{{$menu->name}}'>
                                 <div class='{{$menu->is_dashboard?"is-dashboard":""}}' title="{{$menu->is_dashboard?'This is setted as Dashboard':''}}">
-                                    <i class='{{($menu->is_dashboard)?"icon-is-dashboard fa fa-dashboard":$menu->icon}}'></i> {{$menu->name}} <span
-                                            class='pull-right'><a class='fa fa-pencil' title='Edit'
+                                    <i class='{{($menu->is_dashboard)?"icon-is-dashboard fas fa-dashboard":$menu->icon}}'></i> {{$menu->name}} <span
+                                            class='pull-right'><a class='fas fa-pencil' title='Edit'
                                                                   href='{{route("MenusControllerGetEdit",["id"=>$menu->id])}}?return_url={{urlencode(Request::fullUrl())}}'></a>&nbsp;&nbsp;<a
-                                                title='Delete' class='fa fa-trash'
+                                                title='Delete' class='fas fa-trash'
                                                 onclick='{{CRUDBooster::deleteConfirm(route("MenusControllerGetDelete",["id"=>$menu->id]))}}'
                                                 href='javascript:void(0)'></a></span>
                                     <br/><em class="text-muted">
-                                        <small><i class="fa fa-users"></i> &nbsp; {{implode(', ',$privileges)}}</small>
+                                        <small><i class="fas fa-users"></i> &nbsp; {{implode(', ',$privileges)}}</small>
                                     </em>
                                 </div>
                                 <ul>
@@ -166,14 +166,14 @@
                                             <li data-id='{{$child->id}}' data-name='{{$child->name}}'>
                                                 <div class='{{$child->is_dashboard?"is-dashboard":""}}'
                                                      title="{{$child->is_dashboard?'This is setted as Dashboard':''}}"><i
-                                                            class='{{($child->is_dashboard)?"icon-is-dashboard fa fa-dashboard":$child->icon}}'></i> {{$child->name}}
-                                                    <span class='pull-right'><a class='fa fa-pencil' title='Edit'
+                                                            class='{{($child->is_dashboard)?"icon-is-dashboard fas fa-dashboard":$child->icon}}'></i> {{$child->name}}
+                                                    <span class='pull-right'><a class='fas fa-pencil' title='Edit'
                                                                                 href='{{route("MenusControllerGetEdit",["id"=>$child->id])}}?return_url={{urlencode(Request::fullUrl())}}'></a>&nbsp;&nbsp;<a
-                                                                title="Delete" class='fa fa-trash'
+                                                                title="Delete" class='fas fa-trash'
                                                                 onclick='{{CRUDBooster::deleteConfirm(route("MenusControllerGetDelete",["id"=>$child->id]))}}'
                                                                 href='javascript:void(0)'></a></span>
                                                     <br/><em class="text-muted">
-                                                        <small><i class="fa fa-users"></i> &nbsp; {{implode(', ',$privileges)}}</small>
+                                                        <small><i class="fas fa-users"></i> &nbsp; {{implode(', ',$privileges)}}</small>
                                                     </em>
                                                 </div>
                                             </li>
@@ -197,19 +197,19 @@
                     <ul class='draggable-menu draggable-menu-inactive'>
                         @foreach($menu_inactive as $menu)
                             <li data-id='{{$menu->id}}' data-name='{{$menu->name}}'>
-                                <div><i class='{{$menu->icon}}'></i> {{$menu->name}} <span class='pull-right'><a class='fa fa-pencil' title='Edit'
+                                <div><i class='{{$menu->icon}}'></i> {{$menu->name}} <span class='pull-right'><a class='fas fa-pencil' title='Edit'
                                                                                                                  href='{{route("MenusControllerGetEdit",["id"=>$menu->id])}}?return_url={{urlencode(Request::fullUrl())}}'></a>&nbsp;&nbsp;<a
-                                                title='Delete' class='fa fa-trash'
+                                                title='Delete' class='fas fa-trash'
                                                 onclick='{{CRUDBooster::deleteConfirm(route("MenusControllerGetDelete",["id"=>$menu->id]))}}'
                                                 href='javascript:void(0)'></a></span></div>
                                 <ul>
                                     @if($menu->children)
                                         @foreach($menu->children as $child)
                                             <li data-id='{{$child->id}}' data-name='{{$child->name}}'>
-                                                <div><i class='{{$child->icon}}'></i> {{$child->name}} <span class='pull-right'><a class='fa fa-pencil'
+                                                <div><i class='{{$child->icon}}'></i> {{$child->name}} <span class='pull-right'><a class='fas fa-pencil'
                                                                                                                                    title='Edit'
                                                                                                                                    href='{{route("MenusControllerGetEdit",["id"=>$child->id])}}?return_url={{urlencode(Request::fullUrl())}}'></a>&nbsp;&nbsp;<a
-                                                                title="Delete" class='fa fa-trash'
+                                                                title="Delete" class='fas fa-trash'
                                                                 onclick='{{CRUDBooster::deleteConfirm(route("MenusControllerGetDelete",["id"=>$child->id]))}}'
                                                                 href='javascript:void(0)'></a></span></div>
                                             </li>

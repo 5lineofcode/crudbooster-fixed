@@ -22,11 +22,11 @@
     @endpush
 
     <ul class="nav nav-tabs">
-        <li role="presentation"><a href="{{Route('ModulsControllerGetStep1',['id'=>$id])}}"><i class='fa fa-info'></i> Step 1 - Module Information</a></li>
-        <li role="presentation"><a href="{{Route('ModulsControllerGetStep2',['id'=>$id])}}"><i class='fa fa-table'></i> Step 2 - Table Display</a></li>
-        <li role="presentation" class="active"><a href="{{Route('ModulsControllerGetStep3',['id'=>$id])}}"><i class='fa fa-plus-square-o'></i> Step 3 - Form
+        <li role="presentation"><a href="{{Route('ModulsControllerGetStep1',['id'=>$id])}}"><i class='fas fa-info'></i> Step 1 - Module Information</a></li>
+        <li role="presentation"><a href="{{Route('ModulsControllerGetStep2',['id'=>$id])}}"><i class='fas fa-table'></i> Step 2 - Table Display</a></li>
+        <li role="presentation" class="active"><a href="{{Route('ModulsControllerGetStep3',['id'=>$id])}}"><i class='fas fa-plus-square-o'></i> Step 3 - Form
                 Display</a></li>
-        <li role="presentation"><a href="{{Route('ModulsControllerGetStep4',['id'=>$id])}}"><i class='fa fa-wrench'></i> Step 4 - Configuration</a></li>
+        <li role="presentation"><a href="{{Route('ModulsControllerGetStep4',['id'=>$id])}}"><i class='fas fa-wrench'></i> Step 4 - Configuration</a></li>
     </ul>
     @push('head')
         <style>
@@ -412,7 +412,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class='fa fa-cog'></i> Options</h4>
+                    <h4 class="modal-title"><i class='fas fa-cog'></i> Options</h4>
                 </div>
                 <div class="modal-body">
                     <p>One fine body&hellip;</p>
@@ -467,7 +467,7 @@
                                 </select>
                             </td>
                             <td>
-                                <a class='btn btn-primary btn-options' href='javascript:;'><i class='fa fa-cog'></i> Options</a>
+                                <a class='btn btn-primary btn-options' href='javascript:;'><i class='fas fa-cog'></i> Options</a>
                                 <div class='option_area' style="display: none">
                                     <?php
 
@@ -556,10 +556,10 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="javascript:void(0)" class="btn btn-info btn-plus"><i class='fa fa-plus'></i></a>
-                                <a href="javascript:void(0)" class="btn btn-danger btn-delete"><i class='fa fa-trash'></i></a>
-                                <a href="javascript:void(0)" class="btn btn-success btn-up"><i class='fa fa-arrow-up'></i></a>
-                                <a href="javascript:void(0)" class="btn btn-success btn-down"><i class='fa fa-arrow-down'></i></a>
+                                <a href="javascript:void(0)" class="btn btn-info btn-plus"><i class='fas fa-plus'></i></a>
+                                <a href="javascript:void(0)" class="btn btn-danger btn-delete"><i class='fas fa-trash'></i></a>
+                                <a href="javascript:void(0)" class="btn btn-success btn-up"><i class='fas fa-arrow-up'></i></a>
+                                <a href="javascript:void(0)" class="btn btn-success btn-down"><i class='fas fa-arrow-down'></i></a>
                             </td>
                         </tr>
                         <?php $index++;?>
@@ -582,20 +582,48 @@
                             </select>
                         </td>
                         <td>
-                            <a class='btn btn-primary btn-options' href='#'><i class='fa fa-cog'></i> Options</a>
+                            <a class='btn btn-primary btn-options' href='#'><i class='fas fa-cog'></i> Options</a>
                             <div class='option_area' style="display: none">
 
                             </div>
                         </td>
                         <td>
-                            <a href="javascript:void(0)" class="btn btn-info btn-plus"><i class='fa fa-plus'></i></a>
-                            <a href="javascript:void(0)" class="btn btn-danger btn-delete"><i class='fa fa-trash'></i></a>
-                            <a href="javascript:void(0)" class="btn btn-success btn-up"><i class='fa fa-arrow-up'></i></a>
-                            <a href="javascript:void(0)" class="btn btn-success btn-down"><i class='fa fa-arrow-down'></i></a>
+                            <a href="javascript:void(0)" class="btn btn-info btn-plus"><i class='fas fa-plus'></i></a>
+                            <a href="javascript:void(0)" class="btn btn-danger btn-delete"><i class='fas fa-trash'></i></a>
+                            <a href="javascript:void(0)" class="btn btn-success btn-up"><i class='fas fa-arrow-up'></i></a>
+                            <a href="javascript:void(0)" class="btn btn-success btn-down"><i class='fas fa-arrow-down'></i></a>
                         </td>
                     </tr>
 
 
+                    </tbody>
+                </table>
+
+                <h4>Master Detail IFrame</h4>
+                <span>Only Show on Edit</span>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 100px;">Type</th>
+                            <th style="width: 200px;">URL</th>
+                            <th style="width: 200px;">Parameter</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <select class="form-control" name="detail_type">
+                                    <option value="iframe" selected>IFrame</option>
+                                    <option value="html">HTML</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="admin/my-page" name="detail_url">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="user_id" name="detail_parameter"/>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 

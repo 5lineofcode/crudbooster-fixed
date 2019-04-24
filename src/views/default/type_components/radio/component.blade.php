@@ -25,7 +25,7 @@
                 } else {
                     $val = $label = $d;
                 }
-				$checked = ( ($value && in_array($val, $value)) || (CRUDBooster::isCreate() && ($k==0 && $form['validation'])) ) ? "checked" : "";
+                $checked = ($value && in_array($val, $value)) ? "checked" : "";
                 ?>
                 <div class=" {{$disabled}}">
                     <label class='radio-inline'>
@@ -98,7 +98,7 @@
             }
         }
         ?>
-        <div class="text-danger">{!! $errors->first($name)?"<i class='fa fa-info-circle'></i> ".$errors->first($name):"" !!}</div>
+        <div class="text-danger">{!! $errors->first($name)?"<i class='fas fa-info-circle'></i> ".$errors->first($name):"" !!}</div>
         <p class='help-block'>{{ @$form['help'] }}</p>
     </div>
 </div>

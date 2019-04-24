@@ -9,13 +9,13 @@
             <div class="icon">
                 <i class="ion [icon]"></i>
             </div>
-            <a href="[link]" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="[link]" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
 
         <div class='action pull-right'>
-            <a href='javascript:void(0)' data-componentid='{{$componentID}}' data-name='Small Box' class='btn-edit-component'><i class='fa fa-pencil'></i></a>
+            <a href='javascript:void(0)' data-componentid='{{$componentID}}' data-name='Small Box' class='btn-edit-component'><i class='fas fa-pencil'></i></a>
             &nbsp;
-            <a href='javascript:void(0)' data-componentid='{{$componentID}}' class='btn-delete-component'><i class='fa fa-trash'></i></a>
+            <a href='javascript:void(0)' data-componentid='{{$componentID}}' class='btn-delete-component'><i class='fas fa-trash'></i></a>
         </div>
     </div>
 @elseif($command=='configuration')

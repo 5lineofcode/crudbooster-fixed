@@ -19,7 +19,7 @@
 
 ### Code
 ```php
-$this->sub_module[] = ['label'=>'Photos','path'=>'photos','parent_columns'=>'name,description','foreign_key'=>'albums_id','button_color'=>'success','button_icon'=>'fa fa-bars'];
+$this->sub_module[] = ['label'=>'Photos','path'=>'photos','parent_columns'=>'name,description','foreign_key'=>'albums_id','button_color'=>'success','button_icon'=>'fas fa-bars'];
 ```
 ![image](https://cloud.githubusercontent.com/assets/6733315/23846180/c91688da-07fe-11e7-93d6-20bafbfa36a7.png)
 

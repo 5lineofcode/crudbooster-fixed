@@ -148,6 +148,144 @@ class ApiCustomController extends CBController
         return view('crudbooster::api_generator', $data);
     }
 
+    public function getDatabaseBackup()
+    {
+        $this->cbLoader();
+
+        if (! CRUDBooster::isSuperadmin()) {
+            CRUDBooster::insertLog(trans("crudbooster.log_try_view", ['name' => 'API Index', 'module' => 'API']));
+            CRUDBooster::redirect(CRUDBooster::adminPath(), trans('crudbooster.denied_access'));
+        }
+
+        $mysql_bin_path = env('MYSQL_BIN_PATH');
+        $host = env('DB_HOST');
+        $username = env('DB_USERNAME');
+        $password = env('DB_PASSWORD');
+        $database = env('DB_DATABASE');
+
+        exec("$mysql_bin_path\mysqldump --user=$username --password=$password --host=$host $database > ./../database.sql");
+        return redirect()->back()->with(['message' => '"Database Backup Done!"', 'message_type' => 'success']);
+    }
+
+    public function getDatabaseImport()
+    {
+        $this->cbLoader();
+
+        if (! CRUDBooster::isSuperadmin()) {
+            CRUDBooster::insertLog(trans("crudbooster.log_try_view", ['name' => 'API Index', 'module' => 'API']));
+            CRUDBooster::redirect(CRUDBooster::adminPath(), trans('crudbooster.denied_access'));
+        }
+
+        $mysql_bin_path = env('MYSQL_BIN_PATH');
+        $host = env('DB_HOST');
+        $username = env('DB_USERNAME');
+        $password = env('DB_PASSWORD');
+        $database = env('DB_DATABASE');
+
+
+        DB::delete("DROP DATABASE IF EXISTS $database;");
+        DB::delete("CREATE DATABASE IF NOT EXISTS $database;");
+
+        exec("$mysql_bin_path\mysql --user=$username --password=$password --host=$host $database < ./../database.sql");
+        return redirect()->back()->with(['message' => 'Database Import Done!', 'message_type' => 'success']);
+    }
+
+    public function getResetToDefault()
+    {
+        
+        if(!isset($_GET["key"])){
+            echo "This mode need a key as GET Parameter, contact Developer";
+            die();
+        }
+
+        if($_GET["key"]!="crudbooster717"){
+            echo "Your key is invalid! Contact Developer!";
+            die();
+        }
+        
+
+        $this->cbLoader();
+
+        if (! CRUDBooster::isSuperadmin()) {
+            CRUDBooster::insertLog(trans("crudbooster.log_try_view", ['name' => 'API Index', 'module' => 'API']));
+            CRUDBooster::redirect(CRUDBooster::adminPath(), trans('crudbooster.denied_access'));
+        }
+
+        $mysql_bin_path = env('MYSQL_BIN_PATH');
+        $host = env('DB_HOST');
+        $username = env('DB_USERNAME');
+        $password = env('DB_PASSWORD');
+        $database = env('DB_DATABASE');
+
+        DB::delete("DROP DATABASE IF EXISTS $database;");
+        DB::insert("CREATE DATABASE IF NOT EXISTS $database;");
+
+        exec("$mysql_bin_path\mysql --user=$username --password=$password --host=$host $database < ./../fresh.database.sql");
+        return redirect()->back()->with(['message' => 'Reset to Fresh Database Done!', 'message_type' => 'success']);
+    }
+
+    public function getResetViewControllerAndScriptToDefault()
+    {
+        if(!isset($_GET["key"])){
+            echo "This mode need a key as GET Parameter, contact Developer";
+            die();
+        }
+
+        if($_GET["key"]!="crudbooster717"){
+            echo "Your key is invalid! Contact Developer!";
+            die();
+        }
+        
+        $this->cbLoader();
+
+        if (! CRUDBooster::isSuperadmin()) {
+            CRUDBooster::insertLog(trans("crudbooster.log_try_view", ['name' => 'API Index', 'module' => 'API']));
+            CRUDBooster::redirect(CRUDBooster::adminPath(), trans('crudbooster.denied_access'));
+        }
+
+        //Delete Custom Views
+        // C:\xampp\htdocs\owa_admin\resources\views
+        // C:\xampp\htdocs\owa_admin\app\Http\Controllers
+        // C:\xampp\htdocs\owa_admin\routes\web.php
+
+        // Delete Firebase_Credentsial.json
+        //Except AdminCmsUsersController.php
+        //Except CBHook.php
+        //Except Controller.php
+
+
+        $arr_path = [
+            "../public/js/",
+            "../public/css/",
+            "Http/Controllers/"
+        ];
+
+        $exception_files = [
+            "AdminCmsUsersController.php",
+            "CBHook.php",
+            "Controller.php"
+        ];
+
+        for($i=0 ; $i<count($arr_path) ; $i++){
+            $path = app_path($arr_path[$i]);
+            $files = array_diff(scandir($path), array('.', '..'));
+            foreach($files as $file){
+
+                $filenames = $path . $file;
+
+                if(array_search($file,$exception_files)>-1){
+                    //left it blank, idk its an error
+                }
+                else {
+                    @unlink($filenames);
+                }
+            }   
+        }
+        die();
+
+        return redirect()->back()->with(['message' => 'Reset to ViewControllerAndScriptToDefault Done!', 'message_type' => 'success']);
+    }
+
     public function getEditApi($id)
     {
         $this->cbLoader();

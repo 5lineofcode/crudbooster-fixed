@@ -12,8 +12,8 @@
 
         <div class='action pull-right'>
             <a href='javascript:void(0)' data-componentid='{{$componentID}}' data-name='Panel Custom' class='btn-edit-component'><i
-                        class='fa fa-pencil'></i></a> &nbsp;
-            <a href='javascript:void(0)' data-componentid='{{$componentID}}' class='btn-delete-component'><i class='fa fa-trash'></i></a>
+                        class='fas fa-pencil'></i></a> &nbsp;
+            <a href='javascript:void(0)' data-componentid='{{$componentID}}' class='btn-delete-component'><i class='fas fa-trash'></i></a>
         </div>
     </div>
 @elseif($command=='configuration')
@@ -53,7 +53,7 @@
 
     <script>
         $(function () {
-            $('#content-{{$componentID}}').html("<i class='fa fa-spin fa-spinner'></i> Please wait loading...");
+            $('#content-{{$componentID}}').html("<i class='fas fa-spin fa-spinner'></i> Please wait loading...");
             $.get('{{$url}}', function (response) {
                 $('#content-{{$componentID}}').html(response);
             });

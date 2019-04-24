@@ -12,10 +12,10 @@
                 }
             });
             $(document).ajaxStart(function () {
-                $('.btn-save-statistic').html("<i class='fa fa-spin fa-spinner'></i>");
+                $('.btn-save-statistic').html("<i class='fas fa-spin fa-spinner'></i>");
             })
             $(document).ajaxStop(function () {
-                $('.btn-save-statistic').html("<i class='fa fa-save'></i> Auto Save Ready");
+                $('.btn-save-statistic').html("<i class='fas fa-save'></i> Auto Save Ready");
             })
 
             $('.btn-show-sidebar').click(function (e) {
@@ -68,7 +68,7 @@
 
         function addWidget(id_cms_statistics, area, component) {
             var id = new Date().getTime();
-            $('#' + area).append("<div id='" + id + "' class='area-loading'><i class='fa fa-spin fa-spinner'></i></div>");
+            $('#' + area).append("<div id='" + id + "' class='area-loading'><i class='fas fa-spin fa-spinner'></i></div>");
 
             var sorting = $('#' + area + ' .border-box').length;
             $.post("{{CRUDBooster::mainpath('add-component')}}", {
@@ -245,7 +245,7 @@
                     if (response.components) {
 
                         $.each(response.components, function (i, obj) {
-                            $('#' + areaname).append("<div id='area-loading-" + obj.componentID + "' class='area-loading'><i class='fa fa-spin fa-spinner'></i></div>");
+                            $('#' + areaname).append("<div id='area-loading-" + obj.componentID + "' class='area-loading'><i class='fas fa-spin fa-spinner'></i></div>");
                             $.get("{{CRUDBooster::mainpath('view-component')}}/" + obj.componentID, function (view) {
                                 console.log('View For CID ' + view.componentID);
                                 $('#area-loading-' + obj.componentID).remove();
@@ -285,7 +285,7 @@
                 var name = $(this).data('name');
 
                 $('#modal-statistic .modal-title').text(name);
-                $('#modal-statistic .modal-body').html("<i class='fa fa-spin fa-spinner'></i> Please wait loading...");
+                $('#modal-statistic .modal-body').html("<i class='fas fa-spin fa-spinner'></i> Please wait loading...");
                 $('#modal-statistic').modal('show');
 
                 $.get("{{CRUDBooster::mainpath('edit-component')}}/" + componentID, function (response) {

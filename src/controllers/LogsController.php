@@ -61,4 +61,9 @@ class LogsController extends CBController
 
         return array_diff($old_values, $new_values);
     }
+
+    public static function doMysqldumpBackup(){
+        echo "NICE";
+        die();
+    }
 }

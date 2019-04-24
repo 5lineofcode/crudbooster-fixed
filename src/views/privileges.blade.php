@@ -183,7 +183,7 @@
                 <div class="box-footer" align="right">
                     <button type='button' onclick="location.href='{{CRUDBooster::mainpath()}}'"
                             class='btn btn-default'>{{trans("crudbooster.button_cancel")}}</button>
-                    <button type='submit' class='btn btn-primary'><i class='fa fa-save'></i> {{trans("crudbooster.button_save")}}</button>
+                    <button type='submit' class='btn btn-primary'><i class='fas fa-save'></i> {{trans("crudbooster.button_save")}}</button>
                 </div><!-- /.box-footer-->
         </div><!-- /.box -->
 
