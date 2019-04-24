@@ -3,6 +3,7 @@
     "description": "CRUDBooster Is CRUD Generator Based On Laravel Easy To Make An Advanced Backend",
     "type": "library",
     "license": "MIT",
+	"version": "20.0.0",
     "keywords":[
         "laravel",
         "admin-panel",
