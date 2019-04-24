@@ -58,7 +58,7 @@
     })
 </script>
 <script src="https://jqwidgets.com/public/jqwidgets/jqx-all.js"></script>
-<script src="{{asset('plugin/jqwidgets-extreme/js/jqwidgets-extreme.js').'?r='.time()}}"></script>
+<script src="https://raw.githubusercontent.com/5lineofcode/jqwidgets-extreme/master/js/jqwidgets-extreme.js"></script>
 
 {{-- <script src="{{asset('vendor/crudbooster/assets/js/main.js').'?r='.time()}}"></script> --}}
 <script src="{{asset('vendor/crudbooster/assets/js/logic-helper.js').'?r='.time()}}"></script>

@@ -21,7 +21,7 @@
 
     <!-- JqxWidgets CSS -->
     <link rel="stylesheet" href="https://jqwidgets.com/public/jqwidgets/styles/jqx.base.css" />
-    <link rel="stylesheet" href="{{ asset("plugin/jqwidgets-extreme/css/jqwidgets-extreme.css") }}" />
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/5lineofcode/jqwidgets-extreme/master/js/jqwidgets-extreme.js" />
 
     <link rel='stylesheet' href='{{asset("vendor/crudbooster/assets/css/main.css").'?r='.time()}}'/>
     <link rel='stylesheet' href='{{asset("vendor/crudbooster/assets/css/smaller-input.css").'?r='.time()}}'/>
