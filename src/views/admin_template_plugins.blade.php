@@ -57,10 +57,26 @@
         $('.datatables-simple').DataTable();
     })
 </script>
+
+<!-- JQWidgets -->
 <script src="https://jqwidgets.com/public/jqwidgets/jqx-all.js"></script>
 <script src="https://raw.githubusercontent.com/5lineofcode/jqwidgets-extreme/master/js/jqwidgets-extreme.js"></script>
 
+<!-- Bootsrap Toggle -->
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 {{-- <script src="{{asset('vendor/crudbooster/assets/js/main.js').'?r='.time()}}"></script> --}}
 <script src="{{asset('vendor/crudbooster/assets/js/logic-helper.js').'?r='.time()}}"></script>
 
+
+<script>
+$(document).on("keypress",function(e){
+    if(e.keyCode==96){
+        alert("Bootsrap Toggle Trial Feature");
+        $(`input[type="checkbox"]`).bootstrapToggle({
+            on: 'Enabled',
+            off: 'Disabled'
+        });
+    }
+});
+</script>
 	

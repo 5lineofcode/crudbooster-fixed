@@ -26,6 +26,8 @@
     <link rel='stylesheet' href='{{asset("vendor/crudbooster/assets/css/main.css").'?r='.time()}}'/>
     <link rel='stylesheet' href='{{asset("vendor/crudbooster/assets/css/smaller-input.css").'?r='.time()}}'/>
 
+    <!-- Bootsrap Toggle -->
+    <link rel="stylesheet" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"/>
     
     <!-- load css -->
     <style type="text/css">
