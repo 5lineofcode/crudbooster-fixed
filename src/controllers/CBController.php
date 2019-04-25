@@ -1160,6 +1160,10 @@ class CBController extends Controller
         $page_menu = Route::getCurrentRoute()->getActionName();
         $command = 'add';
 
+        if(method_exists($this,'before_load_add')){
+			$this->before_load_add();
+        }
+        
         return view('crudbooster::default.form', compact('page_title', 'page_menu', 'command'));
     }
 
