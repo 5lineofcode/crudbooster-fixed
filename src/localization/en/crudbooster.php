@@ -86,7 +86,7 @@ return [
     'delete_description_confirm' => "You will not be able to recover this record data!",
     'delete_title_confirm' => "Are you sure ?",
 
-    'action_show_data' => 'Show Data',
+    'action_show_data' => 'Refresh!!!',
     'action_add_data' => 'Add Data',
     'action_delete_selected' => 'Delete Selected',
 
