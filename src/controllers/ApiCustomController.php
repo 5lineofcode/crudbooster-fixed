@@ -257,13 +257,18 @@ class ApiCustomController extends CBController
         $arr_path = [
             "../public/js/",
             "../public/css/",
-            "Http/Controllers/"
+            "Http/Controllers/",
+            "../resources/views/",
+            "../resources/views/admin/",
+            "../storage/logs/",
         ];
 
         $exception_files = [
             "AdminCmsUsersController.php",
             "CBHook.php",
-            "Controller.php"
+            "Controller.php",
+            "example.blade.php",
+            ".gitignore"
         ];
 
         for($i=0 ; $i<count($arr_path) ; $i++){
@@ -277,10 +282,30 @@ class ApiCustomController extends CBController
                     //left it blank, idk its an error
                 }
                 else {
-                    @unlink($filenames);
+                    if(!is_dir($filenames)){
+                        if(!isset($_GET["confirm"])){
+                            echo "Unlink > $filenames <br>";
+                        }
+                        else {
+                            @unlink($filenames);
+                            echo "$filenames has been deleted<br>";
+                        }
+                        
+                    }
                 }
             }   
         }
+
+        if(isset($_GET["confirm"])){
+            //! Delete All Menu
+            DB::delete("delete from cms_menus");
+            echo "cms_menu deleted!";
+        }
+
+        $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        echo "
+            <a href='$url&confirm=yes'>Confirm</a>
+        ";
         die();
 
         return redirect()->back()->with(['message' => 'Reset to ViewControllerAndScriptToDefault Done!', 'message_type' => 'success']);
