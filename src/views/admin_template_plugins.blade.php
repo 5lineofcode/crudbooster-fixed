@@ -60,7 +60,7 @@
 
 <!-- JQWidgets -->
 <script src="https://jqwidgets.com/public/jqwidgets/jqx-all.js"></script>
-<script src="https://raw.githubusercontent.com/5lineofcode/jqwidgets-extreme/master/js/jqwidgets-extreme.js"></script>
+<script src="http://aosdev.xyz/jqwidgets-extreme/js/jqwidgets-extreme.js"></script>
 
 <!-- Bootsrap Toggle -->
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
