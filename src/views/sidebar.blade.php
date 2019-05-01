@@ -38,40 +38,27 @@ if(in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
                             <span>{{trans("crudbooster.text_dashboard")}}</span> </a></li>
                 @endif
 
+                <?php
+                $is_menu_activated = false;
+                ?>
+
                 @foreach(CRUDBooster::sidebarMenu() as $menu)
-
-                    {{-- <li data-id='{{$menu->id}}' class='{{(!empty($menu->children))?"treeview":""}} {{ (Request::is($menu->url_path."*"))?"active":""}}'>
-                        
-                        <a href='{{ url('/') . "/" . $menu->url_path }}'
-                           class='{{($menu->color)?"text-".$menu->color:""}}'>
-                            <i class='{{$menu->icon}} {{($menu->color)?"text-".$menu->color:""}}'></i> <span>{{$menu->name}}</span>
-                            @if(!empty($menu->children))<i class="fas fa-angle-{{ trans("crudbooster.right") }} pull-{{ trans("crudbooster.right") }}"></i>@endif
-                        </a>
-
-                        @if(!empty($menu->children))
-                            <ul class="treeview-menu">
-                                @foreach($menu->children as $child)
-                                    <li data-id='{{$child->id}}' class='{{(Request::is($child->url_path .= !ends_with(Request::decodedPath(), $child->url_path) ? "/*" : ""))?"active":""}}'>
-                                    <a href='{{ url($child->url) }}'
-                                           class='{{($child->color)?"text-".$child->color:""}}'>
-                                            <i class='{{$child->icon}}'></i> <span>{{$child->name}}</span>
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </li> --}}
-
                     <?php
                     $is_active = false;
-                    if(!empty($menu->children)){
-                        foreach($menu->children as $child){
-                            $url = Request::url();
-                            if(strpos($url, $child->url) !== false){
-                                $is_active = true;
+                    if($is_menu_activated==false){
+
+                        if(!empty($menu->children)){
+                            foreach($menu->children as $child){
+                                $url = Request::url();
+                                if(strpos($url, $child->url) !== false){
+                                    $is_active = true;
+                                    $is_menu_activated = true;
+                                }
                             }
                         }
+                        
                     }
+                    
                     ?>
                     
                     <li data-id='{{$menu->id}}' class='{{(!empty($menu->children))?"treeview":""}} {{ $is_active == true ?  "active" : "false" }}'>
