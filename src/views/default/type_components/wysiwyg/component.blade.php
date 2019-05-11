@@ -1,8 +1,20 @@
 @push('bottom')
     <script type="text/javascript">
+
         $(document).ready(function () {
             $('#textarea_{{$name}}').summernote({
-                height: 180,
+                height: 100,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['ga',['math']],
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['insert',['picture','link','table','hr']]
+                ],
                 callbacks: {
                     onImageUpload: function (image) {
                         uploadImage{{$name}}(image[0]);

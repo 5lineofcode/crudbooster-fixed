@@ -28,7 +28,14 @@
 
     <!-- Bootsrap Toggle -->
     <link rel="stylesheet" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"/>
+
+    <!-- Custom Media -->
+    <link href="{{asset("plugin/custom-media/css/custom-media.css")}}" rel="stylesheet" type="text/css"/>
     
+    <!-- Drop Zone -->
+    <link href="{{asset("plugin/dropzone/css/dropzone.min.css")}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset("plugin/dropzone/css/basic.min.css")}}" rel="stylesheet" type="text/css"/>
+
     <!-- load css -->
     <style type="text/css">
         @if($style_css)

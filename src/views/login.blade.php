@@ -1,3 +1,12 @@
+<?php
+$login_path = "vendor/crudbooster/views/login";
+if(View::exists($login_path)){
+    ?>
+    @include($login_path)
+    <?php
+    die();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>

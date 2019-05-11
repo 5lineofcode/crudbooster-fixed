@@ -5,8 +5,12 @@
 
 <!-- REQUIRED JS SCRIPTS -->
 
-<!-- jQuery 2.1.3 -->
+<!-- JS Helper -->
+<script>
+var web_url = "{{ url('/') }}/";
+</script>
 
+<!-- jQuery 2.1.3 -->
 <script src="{{ asset ('vendor/crudbooster/assets/adminlte/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
 
 <!-- Bootstrap 3.3.2 JS -->
@@ -64,6 +68,14 @@
 
 <!-- Bootsrap Toggle -->
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<!-- Drop Zone -->
+<script src="{{asset("plugin/dropzone/js/dropzone.min.js")}}"></script>
+
+<!-- Custom Media -->
+<script src="{{asset("plugin/custom-media/js/custom-media.js")}}"></script>
+
+
 {{-- <script src="{{asset('vendor/crudbooster/assets/js/main.js').'?r='.time()}}"></script> --}}
 <script src="{{asset('vendor/crudbooster/assets/js/logic-helper.js').'?r='.time()}}"></script>
 
