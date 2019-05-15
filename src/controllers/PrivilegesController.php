@@ -35,14 +35,13 @@ class PrivilegesController extends CBController
         $this->form[] = ["label" => "Name", "name" => "name", 'required' => true];
         $this->form[] = ["label" => "Is Superadmin", "name" => "is_superadmin", 'required' => true];
         $this->form[] = ["label" => "Theme Color", "name" => "theme_color", 'required' => true];
-
     }
 
     public function getAdd()
     {
         $this->cbLoader();
 
-        if (! CRUDBooster::isCreate() && $this->global_privilege == false) {
+        if (!CRUDBooster::isCreate() && $this->global_privilege == false) {
             CRUDBooster::insertLog(trans('crudbooster.log_try_add', ['module' => CRUDBooster::getCurrentModule()->name]));
             CRUDBooster::redirect(CRUDBooster::adminPath(), trans("crudbooster.denied_access"));
         }
@@ -59,7 +58,7 @@ class PrivilegesController extends CBController
     {
         $this->cbLoader();
 
-        if (! CRUDBooster::isCreate() && $this->global_privilege == false) {
+        if (!CRUDBooster::isCreate() && $this->global_privilege == false) {
             CRUDBooster::insertLog(trans('crudbooster.log_try_add_save', [
                 'name' => Request::input($this->title_field),
                 'module' => CRUDBooster::getCurrentModule()->name,
@@ -100,7 +99,93 @@ class PrivilegesController extends CBController
         $roles = DB::table('cms_privileges_roles')->where('id_cms_privileges', CRUDBooster::myPrivilegeId())->join('cms_moduls', 'cms_moduls.id', '=', 'id_cms_moduls')->select('cms_moduls.name', 'cms_moduls.path', 'is_visible', 'is_create', 'is_read', 'is_edit', 'is_delete')->get();
         Session::put('admin_privileges_roles', $roles);
 
+        //! Update Menu
+        $id_cms_privileges = $id;
+        $this->insertOrUpdateMenuPrivileges($priv, $id_cms_privileges);
+
+
         CRUDBooster::redirect(CRUDBooster::mainpath(), trans("crudbooster.alert_add_data_success"), 'success');
+    }
+
+    public function insertOrUpdateMenuPrivileges($priv, $id_cms_privileges)
+    {
+        $this->deletePreviousMenuPrivilegesBefore($id_cms_privileges);
+
+        if ($priv) {
+            foreach ($priv as $id_modul => $data) {
+                $modul = DB::table("cms_moduls")->where("id", $id_modul)->first();
+                $this->addCustomMenuPrivileges($modul,$id_cms_privileges);
+
+                $controller = $modul->controller;
+
+                $menus = DB::table("cms_menus")
+                    ->where("path", $controller . "GetIndex")
+                    ->orWhere("path", $controller . "@getIndex")
+                    ->get();
+
+                foreach ($menus as $menu) {
+
+                    //add parent_id
+                    $cms_menu_parent_id = $menu->parent_id;
+                    $this->addMenuPrivileges($cms_menu_parent_id, $id_cms_privileges);
+
+                    $id_cms_menu = $menu->id;
+                    $this->addMenuPrivileges($id_cms_menu, $id_cms_privileges);
+                }
+            }
+        }
+    }
+    
+    public function deletePreviousMenuPrivilegesBefore($id_cms_privileges){
+        DB::table("cms_menus_privileges")
+            ->where("id_cms_privileges",$id_cms_privileges)
+            ->delete();
+    }
+
+    public function addCustomMenuPrivileges($modul, $id_cms_privileges){
+        if(str_contains(strtolower($modul->name), 'curriculum')){
+            $this->addMenuPrivileges(36, $id_cms_privileges);
+        }
+
+        if(str_contains(strtolower($modul->name), 'subject')){
+            $this->addMenuPrivileges(13, $id_cms_privileges);
+        }
+
+        if(str_contains(strtolower($modul->name), 'learning objective')){
+            $this->addMenuPrivileges(13, $id_cms_privileges);
+        }
+
+        if(str_contains(strtolower($modul->name), 'lesson note')){
+            $this->addMenuPrivileges(13, $id_cms_privileges);
+        }
+
+        if(str_contains(strtolower($modul->name), 'media link')){
+            $this->addMenuPrivileges(13, $id_cms_privileges);
+        }
+
+        if(str_contains(strtolower($modul->name), 'multi choice question')){
+            $this->addMenuPrivileges(13, $id_cms_privileges);
+        }
+
+        if(str_contains(strtolower($modul->name), 'structured question')){
+            $this->addMenuPrivileges(13, $id_cms_privileges);
+        }
+    }
+
+    public function addMenuPrivileges($id_cms_menu, $id_cms_privileges)
+    {
+        $cms_menus_privilege = DB::table("cms_menus_privileges")
+            ->where("id_cms_menus", $id_cms_menu)
+            ->where("id_cms_privileges", $id_cms_privileges)
+            ->first();
+
+        if ($cms_menus_privilege == null) {
+            DB::table("cms_menus_privileges")
+                ->insert([
+                    "id_cms_menus" => $id_cms_menu,
+                    "id_cms_privileges" => $id_cms_privileges,
+                ]);
+        }
     }
 
     public function getEdit($id)
@@ -109,7 +194,7 @@ class PrivilegesController extends CBController
 
         $row = DB::table($this->table)->where("id", $id)->first();
 
-        if (! CRUDBooster::isRead() && $this->global_privilege == false) {
+        if (!CRUDBooster::isRead() && $this->global_privilege == false) {
             CRUDBooster::insertLog(trans("crudbooster.log_try_edit", [
                 'name' => $row->{$this->title_field},
                 'module' => CRUDBooster::getCurrentModule()->name,
@@ -131,7 +216,7 @@ class PrivilegesController extends CBController
 
         $row = CRUDBooster::first($this->table, $id);
 
-        if (! CRUDBooster::isUpdate() && $this->global_privilege == false) {
+        if (!CRUDBooster::isUpdate() && $this->global_privilege == false) {
             CRUDBooster::insertLog(trans("crudbooster.log_try_add", ['name' => $row->{$this->title_field}, 'module' => CRUDBooster::getCurrentModule()->name]));
             CRUDBooster::redirect(CRUDBooster::adminPath(), trans('crudbooster.denied_access'));
         }
@@ -184,6 +269,10 @@ class PrivilegesController extends CBController
             Session::put('theme_color', $this->arr['theme_color']);
         }
 
+        //! Update Menu
+        $id_cms_privileges = $id;
+        $this->insertOrUpdateMenuPrivileges($priv, $id_cms_privileges);
+
         CRUDBooster::redirect(CRUDBooster::mainpath(), trans("crudbooster.alert_update_data_success", [
             'module' => "Privilege",
             'title' => $row->name,
@@ -196,7 +285,7 @@ class PrivilegesController extends CBController
 
         $row = DB::table($this->table)->where($this->primary_key, $id)->first();
 
-        if (! CRUDBooster::isDelete() && $this->global_privilege == false) {
+        if (!CRUDBooster::isDelete() && $this->global_privilege == false) {
             CRUDBooster::insertLog(trans("crudbooster.log_try_delete", [
                 'name' => $row->{$this->title_field},
                 'module' => CRUDBooster::getCurrentModule()->name,
